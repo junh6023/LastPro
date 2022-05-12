@@ -1,0 +1,135 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="${path}/resources/css/style.css">
+<link rel="stylesheet" href="${path}/resources/css/publicCss.css?after">
+<script type="text/javascript" src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/public.js"></script>
+
+<style>
+    .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
+.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
+.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+
+</style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e6006c0dea6c7917bf7fb858c45d5153&libraries=services,clusterer,drawing"></script><!-- 서비스 클러스터 드로잉 라이브러리 불러오기 -->	
+</head>
+
+<body>
+
+	<jsp:include page="top.jsp" />
+
+
+
+
+	<div class="main_text0" id="link_main_text0">
+		
+		<ul class="icons">
+			<li>
+				<div class="contents1_bold">대모임</div>
+				<div class="icon_img">
+				 	대모임 모집글 뽑는 영역 5~6개까지만
+				</div>
+				
+				<div class="more">MORE</div>
+			</li>
+			<li>
+				<div class="contents1_bold">소모임</div>
+				<div class="icon_img">
+				 	소모임 모집글 뽑는 영역 5~6개까지만
+				</div>
+				
+				<div class="more">MORE</div>
+			</li>
+			<li>
+				<div class="contents1_bold">실시간랭킹</div>
+				<div class="icon_img">
+				 	랭킹 뽑는 영역 5~6개까지만
+				</div>
+				
+				<div class="more">MORE</div>
+			</li>
+
+		</ul>
+		
+	</div>
+	<!--main_text0 end-->
+	<div class="main_text1" id="link_main_text1">
+		<h1>SERVICE</h1>
+		<div class="contents1"></div>
+		<div class="service">
+			<div class="food_photo">
+				<div id="map" style="width:90%;height:650px;"></div>
+
+<c:forEach var="list" items="${list}" >
+<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(36.41998709219585,128.58149633573066), // 지도의 중심좌표
+	        level: 14 // 지도의 확대 레벨
+	    };  
+	
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch("${list.m_address}", function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	
+	     // 커스텀 오버레이에 표출될 내용  
+	        var content =  '<div class="customoverlay">' +
+	        '  <a href="map?m_name=${list.m_name}" target="_blank">' +
+	        '    <span class="title">${list.m_name}</span>' +
+	        '  </a>' +
+	        '</div>';
+	        
+	     // 커스텀 오버레이가 표시될 위치입니다 
+            var overlay = new kakao.maps.CustomOverlay({
+                content: content,
+                map: map,
+                position: marker.getPosition()       
+            });
+
+
+	    } 
+	}); 
+	
+	
+</script>
+</c:forEach>
+			</div>
+			<div class="contents2">
+				<h1>오늘의 뉴스</h1>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp" />
+	
+</body>
+</html>
