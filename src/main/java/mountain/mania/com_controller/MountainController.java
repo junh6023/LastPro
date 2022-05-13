@@ -110,6 +110,7 @@ public class MountainController {
 		Constant.template = this.template;
 		System.out.println("start");
 	}
+	//test
 
 	@RequestMapping("/test")
 	public String test(Model model,HttpServletRequest request) {
