@@ -17,7 +17,7 @@
 	
 	<%
 		for(int i=0;i<boardList.size();i++){
-			MDto bl=(MDto)boardList.get(i);
+			MDto bl=( MDto)boardList.get(i);
 	%>
 	산이름: <a href="mcourse_addform?m_id=<%=bl.getM_id() %>"><%=bl.getM_name()%></a> <br>
 	산 난이도: <%=bl.getM_level() %> <br>

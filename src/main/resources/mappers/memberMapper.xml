@@ -1,0 +1,136 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+다른 mapper와 중복되지 않도록 네임스페이스 기재
+<mapper namespace="member">
+   01. 회원록록
+   <select id="memberList"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      SELECT
+      U_id ,
+      U_name ,
+      u_date
+
+      FROM users
+      ORDER BY u_date
+   </select>
+
+   02. 회원 등록
+   <insert id="insertMember">
+      INSERT INTO users
+      (U_id, u_address, u_pw, u_name,u_experience,u_level,climb)
+      VALUES
+      (#{u_id},#{u_address}, #{u_pw},
+      #{u_name},#{u_experience},#{u_level},#{climb})
+   </insert>
+
+   03. 회원정보 상세조회
+   <select id="viewMember"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      SELECT
+      u_id, u_address, u_pw, u_name, u_level, climb, follow,u_date
+      FROM users
+      WHERE u_id = #{u_id}
+
+   </select>
+   03. 회원정보 상세조회
+   <select id="memberviewMember"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      SELECT
+      u_id, u_address, u_pw, u_name, u_level, climb, follow,u_date
+      FROM users
+      WHERE u_id = #{u_id}
+
+   </select>
+
+   04. 회원정보 수정처리
+   <update id="updateMember">
+      UPDATE users
+      SET
+
+
+      u_address = #{u_address},
+
+      u_pw = #{u_pw},
+      u_name = #{u_name},
+      u_check = #{u_check},
+      u_experience = #{u_experience},
+      u_level = #{u_level},
+      climb = #{climb},
+      follow = #{follow}
+      WHERE
+      u_id = #{u_id}
+   </update>
+
+   05. 회원정보 삭제 처리
+   <delete id="deleteMember">
+      DELETE FROM users
+      WHERE u_pw = #{u_pw}
+   </delete>
+
+   06. 비밀번호 체크
+   <select id="checkPw" resultType="String">
+      SELECT
+      COUNT(*)
+      FROM users
+      WHERE u_id = #{u_id} AND u_pw = #{u_pw}
+   </select>
+   07로그인 ㅊ ㅔ크
+   <select id="memberlogin"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+
+      SELECT *
+      FROM users
+      WHERE u_id = #{u_id}
+      AND u_pw = #{u_pw}
+
+   </select>
+
+   <insert id="follow">
+      insert into follow (my_follow,u_id) values(#{u_id},#{my_follow})
+   </insert>
+   01. 회원록록
+   <select id="followlist"
+      resultType="com.example.spring01.member.model.dto.FollowVO">
+      SELECT *
+      u_id ,my_follow
+      FROM users
+   </select>
+
+
+   카카오 정보 저장
+   <insert id="kakaoinsert" parameterType="java.util.HashMap">
+      insert into users (u_name, u_id)
+      values(#{nickname},#{email})
+   </insert>
+
+   <select id="findkakao" parameterType="java.util.HashMap"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      select * from users where u_name=#{nickname} and
+      u_id=#{email}
+   </select>
+   네이버 정보 저장
+   <insert id="naverinsert">
+      insert into users (u_name, u_id)
+      values(#{u_name},#{u_id})
+   </insert>
+
+
+   <select id="findnaverid"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      select * from users where u_name=#{u_name} and
+      u_id=#{u_id}
+   </select>
+
+   <select id="rankList"
+      resultType="com.example.spring01.member.model.dto.MemberVO">
+      select u_id, u_address, u_email, u_pw, u_name, u_check,
+      u_experience, u_level, climb, follow
+      from users ORDER BY u_experience*1
+   </select>
+
+
+
+
+</mapper>
+           -->

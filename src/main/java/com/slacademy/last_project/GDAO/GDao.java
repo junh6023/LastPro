@@ -13,7 +13,9 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 
+import com.slacademy.last_project.GDTO.BG_ADto;
 import com.slacademy.last_project.GDTO.CDto;
 import com.slacademy.last_project.GDTO.GDto;
 import com.slacademy.last_project.GDTO.GJoinDto;
@@ -48,7 +50,21 @@ public class GDao {
 	public ArrayList<GDto> list() {
 		System.out.println("list다오 들어옴");
 		// TODO Auto-generated method stub
-		String sql="select * from big_group_list order by bg_id";
+		String sql="select bg_id, bg_name, u_id,bg_experience, "
+				+ " case "
+				+ " when bg_experience > 5"
+				+ " then '6'"
+				+ " when bg_experience > 4"
+				+ " then '5'"
+				+ " when bg_experience > 3"
+				+ " then '4'"
+				+ " when bg_experience > 2"
+				+ " then '3'"
+				+ " when bg_experience > 1"
+				+ " then '2'"
+				+ " else '1'"
+				+ " end as bg_level, bg_intro, bg_date from big_group_list order by bg_id";
+		//String sql="select * from big_group_list order by bg_id";
 		return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
 	}
 
@@ -276,7 +292,21 @@ public class GDao {
 	//bg_랭킹보기 눌렀을때
 	public ArrayList<GDto> bg_rank() {
 
-		String sql="select bg_id, bg_name, u_id,bg_experience, bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list";
+		String sql="select bg_id, bg_name, u_id,bg_experience, "
+				+ " case "
+				+ " when bg_experience > 5"
+				+ " then '6'"
+				+ " when bg_experience > 4"
+				+ " then '5'"
+				+ " when bg_experience > 3"
+				+ " then '4'"
+				+ " when bg_experience > 2"
+				+ " then '3'"
+				+ " when bg_experience > 1"
+				+ " then '2'"
+				+ " else '1'"
+				+ " end as bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list";
+
 
 		return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
 	}
@@ -578,6 +608,115 @@ public class GDao {
 					
 				}, new BeanPropertyRowMapper<GDto>(GDto.class));
 			}
+
+
+
+
+
+			/////////////////////////////////////활동내역/////////////////////////////////
+
+		
+		//활동내역 저장
+		public void bg_active_save(final int m_id, final int bg_id, final int c_id, final float bg_experience, final int climb) {
+			System.out.println("bg_active_save 다오 들어옴");
+			
+			int num;
+			String sql0="select max(ba_id)as bgs_id from bg_active";//동호회리스트의 max값을 찾는 sql을 쓰고
+
+			if(template.queryForObject(sql0,Integer.class) != null) {//그 값이 null이 아니라면 찾은 값에 +1을 해주고
+				num=template.queryForObject(sql0,Integer.class)+1;
+		      }
+		      else {//null이라면 그 값을 1로 바꿔줘라
+		         num = 1;
+		      }
+
+			
+			String sql = "insert into bg_active values("+num+",?,?,?,?,?)";
+			
+			this.template.update(sql, new PreparedStatementSetter() {
+
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setInt(1, bg_id);
+					ps.setInt(2, m_id);
+					ps.setInt(3, c_id);
+					ps.setFloat(4, bg_experience);
+					ps.setInt(5, climb);
+					
+				}
+				
+			});
+			
+			bg_update(bg_id);
+			
+		}
+
+		//활동내역 추가되면 바로 동호회 경험치 업뎃
+		private void bg_update(final int bg_id) {
+			
+			String sql="update big_group_list,(select sum(bg_experience) as bg_experiences from bg_active )b set bg_experience=b.bg_experiences where bg_id=?";
+			this.template.update(sql,new PreparedStatementSetter() {
+
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setInt(1, bg_id);					
+				}
+				
+			});
+
+			
+		
+		}
+		//활동내역 리스트 보여줌 -> 이름으로 보여줘야됨 ㅋ 이건 생각좀 ....
+		public ArrayList<BG_ADto> bg_active(final String u_id) {
+			String sql="select c.m_name,d.bg_name,e.c_level,b.bg_experience \r\n"
+					+ "from big_group_member a , bg_active b, mountain c, big_group_list d, course e\r\n"
+					+ "where a.bg_id=b.bg_id \r\n"
+					+ "and b.m_id=c.m_id \r\n"
+					+ "and a.bg_id=d.bg_id \r\n"
+					+ "and b.c_id=e.c_id \r\n"
+					+ "and a.u_id=?";
+			return (ArrayList<BG_ADto>) template.query(sql, new PreparedStatementSetter() {
+
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setString(1, u_id);
+					
+				}
+				
+			}, new BeanPropertyRowMapper<BG_ADto>(BG_ADto.class) );
+			
+		
+		}
+			
+	
+
+
+
+		public int climb(final String u_id) {
+			
+			int climb=0;
+			
+			String sql="select count(*) as climb from bg_active a, big_group_member b where a.bg_id=b.bg_id and b.u_id=?";
+			
+			climb=template.query(sql, new PreparedStatementSetter() { 
+
+		         @Override
+		      public void setValues(PreparedStatement pstmt) throws SQLException {
+
+
+		            pstmt.setString(1, u_id);
+		            
+		         }
+		      }, new  SingleColumnRowMapper<Integer>(Integer.class)).get(0);
+		        
+		        
+		        System.out.println(climb);
+		        
+		        return climb;
+		}
+
+		
 
 
 

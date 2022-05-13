@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.SingleColumnRowMapper;
 
 import com.slacademy.last_project.UBDto.BDto;
 
+import mountain.mania.com_DTO.CDto;
 import mountain.mania.com_DTO.IDto;
 import mountain.mania.com_DTO.MDto;
 
@@ -429,6 +430,52 @@ public class MDao {
 	public ArrayList<MDto> mountain() {
 		String sql = "select m_name, m_address from mountain";
 		return (ArrayList<MDto>) template.query(sql, new BeanPropertyRowMapper<MDto>(MDto.class));
+	}
+
+	public void CourseinInsert(final CDto cdto) {
+		// TODO Auto-generated method stub
+		int num;
+	      String sql0="select max(c_id)as c_id from course";
+
+	      if(template.queryForObject(sql0,Integer.class) != null) {
+	         num=template.queryForObject(sql0,Integer.class)+1;
+	         }
+	         else {
+	            num = 1;
+	         }
+	      
+	     // String sql1="select AVG(cleartime) from useractive where c_id=?";
+	     
+
+		String sql2="insert into course (c_id,img,c_level,cleartime,m_id) values("+num+",?,?,?,?)";
+//		sql2+="area, parking, m_address,items_name,"+
+//				"items_img) values("+num+",?,?,?,?,?,?,?,?)";
+
+		this.template.update(sql2, new PreparedStatementSetter() { //업데이트에 사용
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+
+
+				pstmt.setString(1, cdto.getImg());
+				pstmt.setString(2, cdto.getCourse_lev());
+				pstmt.setInt(3, 0);
+				pstmt.setInt(4, cdto.getM_id());
+			
+				
+			}
+		});
+
+
+	}
+
+	public ArrayList<MDto> getAppMList() {
+		
+		String query = "select * from mountain";
+		return  (ArrayList<MDto>)template.query(query,new BeanPropertyRowMapper<MDto>(MDto.class));
+		
+		 
+	
 	}
 
 

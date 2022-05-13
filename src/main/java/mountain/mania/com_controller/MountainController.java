@@ -2,7 +2,9 @@ package mountain.mania.com_controller;
 
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.slacademy.last_project.EBcommand.EBContentCommand;
 import com.slacademy.last_project.EBcommand.EBDeleteCommand;
@@ -34,6 +37,8 @@ import com.slacademy.last_project.Gcommand.bg_Schedule_checkCommand;
 import com.slacademy.last_project.Gcommand.bg_Schedule_saveCommand;
 import com.slacademy.last_project.Gcommand.bg_Schedule_write1_Command;
 import com.slacademy.last_project.Gcommand.bg_Schedule_write_view1;
+import com.slacademy.last_project.Gcommand.bg_activeCommand;
+import com.slacademy.last_project.Gcommand.bg_active_saveCommand;
 import com.slacademy.last_project.Gcommand.bg_joinlist_giCommand;
 import com.slacademy.last_project.Gcommand.bg_member_list;
 import com.slacademy.last_project.Gcommand.bg_member_out_Command;
@@ -63,6 +68,8 @@ import com.slacademy.last_project.SGcommand.sg_Schedule_checkCommand;
 import com.slacademy.last_project.SGcommand.sg_Schedule_saveCommand;
 import com.slacademy.last_project.SGcommand.sg_Schedule_write1_Command;
 import com.slacademy.last_project.SGcommand.sg_Schedule_write_view1;
+import com.slacademy.last_project.SGcommand.sg_activeCommand;
+import com.slacademy.last_project.SGcommand.sg_active_saveCommand;
 import com.slacademy.last_project.SGcommand.sg_joinlist_giCommand;
 import com.slacademy.last_project.SGcommand.sg_member_listCommand;
 import com.slacademy.last_project.SGcommand.sg_member_out_Command;
@@ -85,6 +92,7 @@ import com.slacademy.last_project.UBcommand.BReplyWriteCommand;
 import com.slacademy.last_project.UBcommand.BWriteCommand;
 import com.slacademy.last_project.UBcommand.search_uboard;
 
+import mountain.mania.com_DTO.MDto;
 import mountain.mania.com_command.*;
 import mountain.mania.com_util.Constant;
 
@@ -164,7 +172,7 @@ public class MountainController {
 	}
 	@RequestMapping("/weather")
 	public String Weather(HttpServletRequest request,Model model) throws IOException {
-		
+
 		command = new MSearchAll();
 		command.execute(model);
 		return "weather";
@@ -186,7 +194,7 @@ public class MountainController {
 		System.out.println("minsert");
 
 		model.addAttribute("request", request);
-		
+
 		command = new MInsertForm();
 		command.execute(model);
 
@@ -275,6 +283,8 @@ public class MountainController {
 	}
 	@RequestMapping("/mcourse_addform")
 	public String mcourse_addform() {
+
+
 		return "mountain/mcourse_addform";
 
 	}
@@ -290,7 +300,7 @@ public class MountainController {
 		command.execute(model);
 		return "redirect:mcourse_form";
 	}
-	
+
 	//동호회리스트 모두 볼때
 	@RequestMapping("/big_group_list")
 	public String GroupList(Model model,HttpServletRequest request ) {
@@ -554,7 +564,7 @@ public class MountainController {
 		model.addAttribute("request", request);
 		command=new search_Command();
 		command.execute(model);
-		
+
 		return "Group/search";
 	}
 
@@ -775,8 +785,8 @@ public class MountainController {
 
 		return "redirect:small_group_list";
 	}
-	
-///////////////////////유저게시판////////////////////////////////////////////	
+
+	///////////////////////유저게시판////////////////////////////////////////////	
 	@RequestMapping("/list")//url매핑
 	public String list(HttpServletRequest request,Model model) {
 		System.out.println("list()");
@@ -786,7 +796,7 @@ public class MountainController {
 		System.out.println("test5");
 		return "user_board/list";
 	}
-	
+
 	@RequestMapping("/write")
 	public String write( HttpServletRequest request, Model model) {
 		System.out.println("write()");	
@@ -799,34 +809,34 @@ public class MountainController {
 	public String write_view() {
 		return "user_board/write_view";
 	}
-	
+
 	@RequestMapping("/content_view")//상세페이지
 	public String content_view(HttpServletRequest request, Model model) {
 		System.out.println("content_view()");
-		
+
 		model.addAttribute("request",request);
-		
+
 		command = new BContentCommand();
 		command.execute(model);
-		
+
 		return "user_board/content_view";
 	}
 	@RequestMapping("/delete")
 	public String delete() {
 		return "user_board/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
 	}
-	
+
 	@RequestMapping("/bDeleteAction")
 	public String bDeleteAction(HttpServletRequest request, Model model) {
 		System.out.println("bDelteAction");
-		
+
 		model.addAttribute("request",request);
 		command = new BDeleteCommand();
 		command.execute(model);
-		
+
 		return "redirect:list";//url까지 바꾸면서 list뷰로 가라
 	}
-	
+
 	@RequestMapping("/modify")
 	public String bModify(HttpServletRequest request, Model model) {
 		System.out.println("bmodify");
@@ -835,18 +845,18 @@ public class MountainController {
 		command.execute(model);
 		return "user_board/modifyForm";
 	}
-	
+
 	@RequestMapping("/modifyAction")
 	public String bModifyAction(HttpServletRequest request, Model model) {
 		System.out.println("bmodifyAct");
-		
+
 		model.addAttribute("request",request);
 		command = new BModifyCommand();
 		command.execute(model);
 		return "redirect:list";
-		
+
 	}
-	
+
 	@RequestMapping("/reply_view")
 	public String breply(HttpServletRequest request, Model model) {
 		System.out.println("rere");
@@ -855,7 +865,7 @@ public class MountainController {
 		command.execute(model);
 		return "user_board/reply_view";
 	}
-	
+
 	@RequestMapping("/ReplyAction")
 	public String bReplyAction(HttpServletRequest request, Model model) {
 		System.out.println("breply");
@@ -863,9 +873,9 @@ public class MountainController {
 		command = new BReplyCommand();
 		command.execute(model);
 		return "redirect:list";
-		
+
 	}
-	
+
 	@RequestMapping("/search_uboard")
 	public String serch_uboard(HttpServletRequest request, Model model) {
 		System.out.println("search_uboard");
@@ -873,9 +883,9 @@ public class MountainController {
 		command = new search_uboard();
 		command.execute(model);
 		return "user_board/search";
-		
+
 	}
-	
+
 	//지도
 	@RequestMapping("/mountain_map")
 	public String Mountain_map(Model model ) {
@@ -883,189 +893,246 @@ public class MountainController {
 		command.execute(model);	
 		return "redirect:test";
 	}
-	
+
 	@RequestMapping("/map")
 	public String map(HttpServletRequest request,Model model ) {
-//		System.out.println(" map 컨트롤러");	
+		//		System.out.println(" map 컨트롤러");	
 		String m_name=request.getParameter("m_name");
 		model.addAttribute("m_name",m_name);
-//		model.addAttribute("request", request);
-//		System.out.println(model);
+		//		model.addAttribute("request", request);
+		//		System.out.println(model);
 		command.execute(model);	
 		return "MountainMap/map";
 	}
-	
-	
-	
-///////////////////////////////이벤트게시판////////////////////////////////////////////////////
-	
-@RequestMapping("/e_list")//url매핑
-public String e_list(HttpServletRequest request,Model model) {
-System.out.println("e_list()컨트롤러");
-model.addAttribute("request",request);	
-command = new EBListCommand();
-command.execute(model); // 동적바인딩
-return "event_board/list";
-}
-
-@RequestMapping("/e_write_view")
-public String e_write_view(HttpServletRequest request, Model model) {
-
-return "event_board/write_view";
-}
-
-@RequestMapping("/e_write")
-public String e_write( HttpServletRequest request, Model model) {
-System.out.println("e_write()");	
-model.addAttribute("request",request);		
-command = new EBWriteCommand();
-command.execute(model);
-return "redirect:e_list";//컨트롤에 되어있는 list로 맵핑된 곳으로 찾아가라 
-}
 
 
-@RequestMapping("/e_content_view")//상세페이지
-public String e_content_view(HttpServletRequest request, Model model) {
-System.out.println("e_content_view()");
 
-model.addAttribute("request",request);
+	///////////////////////////////이벤트게시판////////////////////////////////////////////////////
 
-command = new EBContentCommand();
-command.execute(model);
+	@RequestMapping("/e_list")//url매핑
+	public String e_list(HttpServletRequest request,Model model) {
+		System.out.println("e_list()컨트롤러");
+		model.addAttribute("request",request);	
+		command = new EBListCommand();
+		command.execute(model); // 동적바인딩
+		return "event_board/list";
+	}
 
-return "event_board/content_view";
-}
+	@RequestMapping("/e_write_view")
+	public String e_write_view(HttpServletRequest request, Model model) {
 
-@RequestMapping("/e_delete")
-public String e_delete() {
-return "event_board/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
-}
+		return "event_board/write_view";
+	}
 
-@RequestMapping("/e_bDeleteAction")
-public String e_bDeleteAction(HttpServletRequest request, Model model) {
-System.out.println("e_bDelteAction");
-
-model.addAttribute("request",request);
-command = new EBDeleteCommand();
-command.execute(model);
-
-return "redirect:e_list";//url까지 바꾸면서 list뷰로 가라
-}
-
-@RequestMapping("/e_modify")
-public String e_bModify(HttpServletRequest request, Model model) {
-System.out.println("e_bmodify");
-model.addAttribute("request",request);
-command = new EBModifyViewCommand();
-command.execute(model);
-return "event_board/modifyForm";
-}
-
-@RequestMapping("/e_modifyAction")
-public String e_bModifyAction(HttpServletRequest request, Model model) {
-System.out.println("bmodifyAct");
-
-model.addAttribute("request",request);
-command = new EBModifyCommand();
-command.execute(model);
-return "redirect:e_list";
-
-}
-
-@RequestMapping("/search_eboard")
-public String serch_eboard(HttpServletRequest request, Model model) {
-System.out.println("search_eboard");
-model.addAttribute("request",request);
-command = new search_eboard();
-command.execute(model);
-return "event_board/search";
-
-}
-
-///////////////////////////////공지게시판////////////////////////////////////////////////////
-
-@RequestMapping("/n_list")//url매핑
-public String n_list(HttpServletRequest request,Model model) {
-System.out.println("n_list()컨트롤러");
-model.addAttribute("request",request);	
-command = new NBListCommand();
-command.execute(model); // 동적바인딩
-return "notice_board/list";
-}
-
-@RequestMapping("/n_write_view")
-public String n_write_view(HttpServletRequest request, Model model) {
-
-return "notice_board/write_view";
-}
-
-@RequestMapping("/n_write")
-public String n_write( HttpServletRequest request, Model model) {
-System.out.println("n_write()");	
-model.addAttribute("request",request);		
-command = new NBWriteCommand();
-command.execute(model);
-return "redirect:n_list";//컨트롤에 되어있는 list로 맵핑된 곳으로 찾아가라 
-}
+	@RequestMapping("/e_write")
+	public String e_write( HttpServletRequest request, Model model) {
+		System.out.println("e_write()");	
+		model.addAttribute("request",request);		
+		command = new EBWriteCommand();
+		command.execute(model);
+		return "redirect:e_list";//컨트롤에 되어있는 list로 맵핑된 곳으로 찾아가라 
+	}
 
 
-@RequestMapping("/n_content_view")//상세페이지
-public String n_content_view(HttpServletRequest request, Model model) {
-System.out.println("n_content_view()");
+	@RequestMapping("/e_content_view")//상세페이지
+	public String e_content_view(HttpServletRequest request, Model model) {
+		System.out.println("e_content_view()");
 
-model.addAttribute("request",request);
+		model.addAttribute("request",request);
 
-command = new NBContentCommand();
-command.execute(model);
+		command = new EBContentCommand();
+		command.execute(model);
 
-return "notice_board/content_view";
-}
+		return "event_board/content_view";
+	}
 
-@RequestMapping("/n_delete")
-public String n_delete() {
-return "notice_board/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
-}
+	@RequestMapping("/e_delete")
+	public String e_delete() {
+		return "event_board/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
+	}
 
-@RequestMapping("/n_bDeleteAction")
-public String n_bDeleteAction(HttpServletRequest request, Model model) {
-System.out.println("n_bDelteAction");
+	@RequestMapping("/e_bDeleteAction")
+	public String e_bDeleteAction(HttpServletRequest request, Model model) {
+		System.out.println("e_bDelteAction");
 
-model.addAttribute("request",request);
-command = new NBDeleteCommand();
-command.execute(model);
+		model.addAttribute("request",request);
+		command = new EBDeleteCommand();
+		command.execute(model);
 
-return "redirect:n_list";//url까지 바꾸면서 list뷰로 가라
-}
+		return "redirect:e_list";//url까지 바꾸면서 list뷰로 가라
+	}
 
-@RequestMapping("/n_modify")
-public String n_bModify(HttpServletRequest request, Model model) {
-System.out.println("n_bmodify");
-model.addAttribute("request",request);
-command = new NBModifyViewCommand();
-command.execute(model);
-return "notice_board/modifyForm";
-}
+	@RequestMapping("/e_modify")
+	public String e_bModify(HttpServletRequest request, Model model) {
+		System.out.println("e_bmodify");
+		model.addAttribute("request",request);
+		command = new EBModifyViewCommand();
+		command.execute(model);
+		return "event_board/modifyForm";
+	}
 
-@RequestMapping("/n_modifyAction")
-public String n_bModifyAction(HttpServletRequest request, Model model) {
-System.out.println("n_modifyAction");
+	@RequestMapping("/e_modifyAction")
+	public String e_bModifyAction(HttpServletRequest request, Model model) {
+		System.out.println("bmodifyAct");
 
-model.addAttribute("request",request);
-command = new NBModifyCommand();
-command.execute(model);
-return "redirect:n_list";
+		model.addAttribute("request",request);
+		command = new EBModifyCommand();
+		command.execute(model);
+		return "redirect:e_list";
 
-}
-@RequestMapping("/search_nboard")
-public String serch_nboard(HttpServletRequest request, Model model) {
-System.out.println("search_nboard");
-model.addAttribute("request",request);
-command = new search_nboard();
-command.execute(model);
-return "notice_board/search";
+	}
 
-}
-	
+	@RequestMapping("/search_eboard")
+	public String serch_eboard(HttpServletRequest request, Model model) {
+		System.out.println("search_eboard");
+		model.addAttribute("request",request);
+		command = new search_eboard();
+		command.execute(model);
+		return "event_board/search";
+
+	}
+
+	///////////////////////////////공지게시판////////////////////////////////////////////////////
+
+	@RequestMapping("/n_list")//url매핑
+	public String n_list(HttpServletRequest request,Model model) {
+		System.out.println("n_list()컨트롤러");
+		model.addAttribute("request",request);	
+		command = new NBListCommand();
+		command.execute(model); // 동적바인딩
+		return "notice_board/list";
+	}
+
+	@RequestMapping("/n_write_view")
+	public String n_write_view(HttpServletRequest request, Model model) {
+
+		return "notice_board/write_view";
+	}
+
+	@RequestMapping("/n_write")
+	public String n_write( HttpServletRequest request, Model model) {
+		System.out.println("n_write()");	
+		model.addAttribute("request",request);		
+		command = new NBWriteCommand();
+		command.execute(model);
+		return "redirect:n_list";//컨트롤에 되어있는 list로 맵핑된 곳으로 찾아가라 
+	}
+
+
+	@RequestMapping("/n_content_view")//상세페이지
+	public String n_content_view(HttpServletRequest request, Model model) {
+		System.out.println("n_content_view()");
+
+		model.addAttribute("request",request);
+
+		command = new NBContentCommand();
+		command.execute(model);
+
+		return "notice_board/content_view";
+	}
+
+	@RequestMapping("/n_delete")
+	public String n_delete() {
+		return "notice_board/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
+	}
+
+	@RequestMapping("/n_bDeleteAction")
+	public String n_bDeleteAction(HttpServletRequest request, Model model) {
+		System.out.println("n_bDelteAction");
+
+		model.addAttribute("request",request);
+		command = new NBDeleteCommand();
+		command.execute(model);
+
+		return "redirect:n_list";//url까지 바꾸면서 list뷰로 가라
+	}
+
+	@RequestMapping("/n_modify")
+	public String n_bModify(HttpServletRequest request, Model model) {
+		System.out.println("n_bmodify");
+		model.addAttribute("request",request);
+		command = new NBModifyViewCommand();
+		command.execute(model);
+		return "notice_board/modifyForm";
+	}
+
+	@RequestMapping("/n_modifyAction")
+	public String n_bModifyAction(HttpServletRequest request, Model model) {
+		System.out.println("n_modifyAction");
+
+		model.addAttribute("request",request);
+		command = new NBModifyCommand();
+		command.execute(model);
+		return "redirect:n_list";
+
+	}
+	@RequestMapping("/search_nboard")
+	public String serch_nboard(HttpServletRequest request, Model model) {
+		System.out.println("search_nboard");
+		model.addAttribute("request",request);
+		command = new search_nboard();
+		command.execute(model);
+		return "notice_board/search";
+
+	}
+
+	//////////////////////////////////////////동호회활동/////////////////////////////////////////
+
+	@RequestMapping("/bg_active")//활동내역 보기-> u_id 필요
+	public String bg_active(HttpServletRequest request, Model model) {
+		System.out.println("bg_active 컨트롤러");
+		model.addAttribute("request",request);
+		command = new bg_activeCommand();
+		command.execute(model);
+		return "Group/bg_active";
+	}	
+
+	@RequestMapping("/bg_active_form")
+	public String bg_active_form() {
+		System.out.println("bg_active_form 컨트롤러");
+		return "Group/bg_active_form";
+	}	
+
+	@RequestMapping("/bg_active_save")
+	public String bg_active_save(HttpServletRequest request, Model model) {
+		System.out.println("bg_active_save 컨트롤러");
+		model.addAttribute("request",request);
+		command = new bg_active_saveCommand();
+		command.execute(model);
+		return "redirect:bg_active";
+	}	
+
+	//////////////////////////////////////////소모임활동/////////////////////////////////////////	
+
+	@RequestMapping("/sg_active") //활동내역 보기-> u_id 필요
+	public String sg_active(HttpServletRequest request, Model model) {
+		System.out.println("sg_active 컨트롤러");
+		model.addAttribute("request",request);
+		command = new sg_activeCommand();
+		command.execute(model);
+		return "SGroup/sg_active";
+	}	
+
+
+	@RequestMapping("/sg_active_form")
+	public String sg_active_form() {
+		System.out.println("sg_active_form 컨트롤러");
+		return "SGroup/sg_active_form";
+	}	
+
+
+	@RequestMapping("/sg_active_save")
+	public String sg_active_save(HttpServletRequest request, Model model) {
+		System.out.println("sg_active_save 컨트롤러");
+		model.addAttribute("request",request);
+		command = new sg_active_saveCommand();
+		command.execute(model);
+		return "redirect:sg_active";
+	}	
+
+
+
+
 
 
 }

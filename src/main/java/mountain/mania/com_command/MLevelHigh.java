@@ -31,6 +31,7 @@ public class MLevelHigh implements MCommand{
       
       int listcount=mdao.gethighcount(m_level); //총 리스트 수를 받아옴.
       boardlist = mdao.getMHighList(page,limit,m_level); //리스트를 받아옴.
+      model.addAttribute("list", boardlist);
       
       System.out.println("리스트카운트: " + listcount);
       //총 페이지 수.

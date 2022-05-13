@@ -23,6 +23,7 @@
 						<c:if test="${check eq true}">
 						<li><a href="bg_member_list?u_id=test3">내 동호회 멤버리스트</a><!-- 로그인된 모임장아이디 ${u_id}해야됨  --></li>
 						</c:if>
+						<li><a href="bg_active?u_id=test3">내 동호회 활동내역 보기</a>
 						<li><h2>친목모임</h2></li>
 						<c:set var="check" value="${s_check}" />
 						<c:if test="${check eq true}">
@@ -34,6 +35,7 @@
 						<c:if test="${check eq true}">
 						<li><a href="sg_member_list?u_id=test2">내 모임 멤버리스트</a><!-- 로그인된 모임장아이디 ${u_id}해야됨  --></li>
 						</c:if>
+						<li><a href="sg_active?u_id=test11">내 모임 활동내역 보기</a>
 					</ul>
 				</div>
 				<div class="main-text" >

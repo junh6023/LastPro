@@ -5,9 +5,7 @@ public class CDto {
 	private int c_id;
 	private int m_id;
 	private String course_lev;
-	private String wheelchair;
 	private String clear_time;
-	private String operating;
 	private String img;
 	public int getC_id() {
 		return c_id;
@@ -27,23 +25,11 @@ public class CDto {
 	public void setCourse_lev(String course_lev) {
 		this.course_lev = course_lev;
 	}
-	public String getWheelchair() {
-		return wheelchair;
-	}
-	public void setWheelchair(String wheelchair) {
-		this.wheelchair = wheelchair;
-	}
 	public String getClear_time() {
 		return clear_time;
 	}
 	public void setClear_time(String clear_time) {
 		this.clear_time = clear_time;
-	}
-	public String getOperating() {
-		return operating;
-	}
-	public void setOperating(String operating) {
-		this.operating = operating;
 	}
 	public String getImg() {
 		return img;
@@ -51,4 +37,5 @@ public class CDto {
 	public void setImg(String img) {
 		this.img = img;
 	}
+	
 }

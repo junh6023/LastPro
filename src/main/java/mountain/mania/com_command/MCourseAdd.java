@@ -46,12 +46,11 @@ public class MCourseAdd implements MCommand {
      	      
    			String file1 = (String)files.nextElement();
    			filename1 = multi.getFilesystemName("img");
-   			
+   			System.out.println("코스레벨:"+multi.getParameter("course_lev"));
    			cdto.setM_id(Integer.parseInt(multi.getParameter("m_id")));
+   			
    			cdto.setCourse_lev(multi.getParameter("course_lev"));
-   			cdto.setWheelchair(multi.getParameter("wheelchair"));
-   			cdto.setClear_time(multi.getParameter("clear_time"));
-   			cdto.setOperating("operating");
+   			//cdto.setClear_time(multi.getParameter("clear_time"));
    			cdto.setImg(filename1);
    			
    			
@@ -59,7 +58,7 @@ public class MCourseAdd implements MCommand {
    			
    			System.out.println("1파일 : "+filename1);
    			
-	   		//mdao.MountainInsert(cdto);
+   			mdao.CourseinInsert(cdto);
 	   		
   		}catch(Exception ex){
    			ex.printStackTrace();

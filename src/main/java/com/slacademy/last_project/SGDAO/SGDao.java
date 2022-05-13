@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 
 import com.slacademy.last_project.GDTO.CDto;
 import com.slacademy.last_project.GDTO.GDto;
@@ -23,6 +24,7 @@ import com.slacademy.last_project.SGDTO.SGDto;
 import com.slacademy.last_project.SGDTO.SGJoinDto;
 import com.slacademy.last_project.SGDTO.SGMDto;
 import com.slacademy.last_project.SGDTO.SGSDto;
+import com.slacademy.last_project.SGDTO.SG_ADto;
 
 import mountain.mania.com_DTO.MDto;
 import mountain.mania.com_util.Constant;
@@ -458,6 +460,93 @@ public class SGDao {
 			return false;
 		}
 
+//////////////////////////////////////////활동내역 ////////////////////////
+		
+		
+		
+		
+//활동내역 저장
+public void sg_active_save(final int m_id, final int sg_id, final int c_id, final int climb) {
+System.out.println("sg_active_save 다오 들어옴");
+
+int num;
+String sql0="select max(sa_id)as sa_id from sg_active";//동호회리스트의 max값을 찾는 sql을 쓰고
+
+if(template.queryForObject(sql0,Integer.class) != null) {//그 값이 null이 아니라면 찾은 값에 +1을 해주고
+num=template.queryForObject(sql0,Integer.class)+1;
+}
+else {//null이라면 그 값을 1로 바꿔줘라
+num = 1;
+}
+
+
+String sql = "insert into sg_active values("+num+",?,?,?,?)";
+
+this.template.update(sql, new PreparedStatementSetter() {
+
+@Override
+public void setValues(PreparedStatement ps) throws SQLException {
+ps.setInt(1, sg_id);
+ps.setInt(2, m_id);
+ps.setInt(3, c_id);
+ps.setInt(4, climb);
+
+}
+
+});
+
+
+}
+
+//활동내역 리스트 보여줌 
+public ArrayList<SG_ADto> sg_active(final String u_id) {
+
+
+
+String sql="select c.m_name,a.sg_name,e.c_level "
++ "from small_group_member a , sg_active b, mountain c, course e "
++ "where a.sg_id=b.sg_id  "
++ "and b.m_id=c.m_id "
++ "and b.c_id=e.c_id "
++ "and a.u_id=?";
+return (ArrayList<SG_ADto>) template.query(sql, new PreparedStatementSetter() {
+
+@Override
+public void setValues(PreparedStatement ps) throws SQLException {
+ps.setString(1, u_id);
+
+}
+
+}, new BeanPropertyRowMapper<SG_ADto>(SG_ADto.class) );
+}
+//등산횟수
+public int s_climb(final String u_id) {
+
+
+
+System.out.println("s_climb 다오임"+u_id);
+
+int climb=0;
+
+String sql="select count(*)  as climb from sg_active a, small_group_member b where a.sg_id=b.sg_id and b.u_id=?";
+System.out.println(sql);
+climb=template.query(sql, new PreparedStatementSetter() { 
+
+@Override
+public void setValues(PreparedStatement pstmt) throws SQLException {
+
+
+pstmt.setString(1, u_id);
+
+}
+}, new  SingleColumnRowMapper<Integer>(Integer.class)).get(0);
+
+
+System.out.println(climb);
+
+return climb;
+
+}
 	
 	
 	
