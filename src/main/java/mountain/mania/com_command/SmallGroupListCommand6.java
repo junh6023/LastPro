@@ -18,7 +18,7 @@ public class SmallGroupListCommand6 implements MCommand{
 		
 		model.addAttribute("Slist6", sgdto);
 		System.out.println(model);
-
+		
 	}
 	
 
