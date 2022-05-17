@@ -77,7 +77,7 @@
 			<td>
 				<select name="course">
 					 <c:forEach items="${course}" var="course">
-					 <option value="${course.c_id}">${course.course_name}</option>
+					 <option value="${course.c_id}">${course.c_level}</option>
 					 </c:forEach>
 				</select>
 			</td>	

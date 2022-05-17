@@ -16,12 +16,13 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 
 import com.slacademy.last_project.GDTO.BG_ADto;
-import com.slacademy.last_project.GDTO.CDto;
+
 import com.slacademy.last_project.GDTO.GDto;
 import com.slacademy.last_project.GDTO.GJoinDto;
 import com.slacademy.last_project.GDTO.GMDto;
 import com.slacademy.last_project.GDTO.GSDto;
 
+import mountain.mania.com_DTO.CDto;
 import mountain.mania.com_DTO.MDto;
 import mountain.mania.com_util.Constant;
 
@@ -715,12 +716,6 @@ public class GDao {
 		        
 		        return climb;
 		}
-
-		
-
-
-
-	
 
 
 

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ page import="com.slacademy.last_project.GDTO.*" %>
+    <%@ page import="java.util.*"%>
+    <%List boardList=(List)request.getAttribute("list6"); %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -28,7 +31,7 @@
 </head>
 
 <body>
-	test
+
 	<jsp:include page="top.jsp" />
 
 
@@ -40,7 +43,42 @@
 			<li>
 				<div class="contents1_bold">대모임</div>
 				<div class="icon_img">
-				 	대모임 모집글 뽑는 영역 5~6개까지만
+				 	<table  border="1" align="center">
+						<tr>
+							<th>번호</th>
+							<th>동호회 명</th>
+							<th>동호회 경험치</th>
+							<th>동호회 레벨</th>
+							<th>동호회 장</th>
+							<th>개설 날짜</th>
+					
+						</tr>
+					<%
+						for(int i=0;i<boardList.size();i++){
+							GDto bl=(GDto)boardList.get(i);
+					%>	
+						<tr>
+							<td><%=bl.getBg_id() %></td>
+							<td><%=bl.getBg_name() %></td>
+							<td><%=bl.getBg_experience() %></td>
+							<td><%=bl.getBg_level() %></td>
+							<td><%=bl.getU_id() %></td>
+							<td><%=bl.getBg_date() %></td>
+						</tr>
+					<!--  	<c:forEach items="${list6}" var="list6" >
+						<tr>
+							<td>${list6.bg_id}</td>
+							<td><a href="big_group_content?bg_id=${list6.bg_id}">${list6.bg_name}</a></td>
+							<td>${list6.bg_experience}</td>
+							<td>${list6.bg_level}</td>
+							<td>${list6.u_id}</td>
+							<td>${list6.bg_date}</td>
+						</tr>
+						</c:forEach>
+						-->
+						<%} %>
+						</table>
+						
 				</div>
 				
 				<div class="more">MORE</div>

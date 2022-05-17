@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.slacademy.last_project.GDAO.GDao;
-import com.slacademy.last_project.GDTO.CDto;
 
+import mountain.mania.com_DTO.CDto;
 import mountain.mania.com_DTO.MDto;
 import mountain.mania.com_command.MCommand;
 

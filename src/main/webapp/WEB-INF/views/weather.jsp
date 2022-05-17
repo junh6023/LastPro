@@ -124,7 +124,7 @@
 					<input type="submit" value="검색">
 					</form>
 			</div>
-			<div class="map" >
+			<!-- <div class="map" >
 				<div class="map-bg" >
 					<a href="">
 						<div class="${icon}" ></div>
@@ -157,6 +157,7 @@
 					
 				</div>
 			</div>
+			 -->
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />

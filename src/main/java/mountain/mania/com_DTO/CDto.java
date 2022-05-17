@@ -4,9 +4,16 @@ public class CDto {
 	
 	private int c_id;
 	private int m_id;
-	private String course_lev;
-	private String clear_time;
+	private String c_level;
+	private String cleartime;
 	private String img;
+	
+	public String getC_level() {
+		return c_level;
+	}
+	public void setC_level(String c_level) {
+		this.c_level = c_level;
+	}
 	public int getC_id() {
 		return c_id;
 	}
@@ -19,17 +26,16 @@ public class CDto {
 	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
-	public String getCourse_lev() {
-		return course_lev;
+
+	
+	
+	
+	
+	public String getCleartime() {
+		return cleartime;
 	}
-	public void setCourse_lev(String course_lev) {
-		this.course_lev = course_lev;
-	}
-	public String getClear_time() {
-		return clear_time;
-	}
-	public void setClear_time(String clear_time) {
-		this.clear_time = clear_time;
+	public void setCleartime(String cleartime) {
+		this.cleartime = cleartime;
 	}
 	public String getImg() {
 		return img;

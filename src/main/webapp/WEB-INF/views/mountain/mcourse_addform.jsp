@@ -14,7 +14,7 @@
 
 
 <input type="hidden" name="m_id" value="<%=m_id%>">
-코스레벨: <select name="course_lev">
+코스레벨: <select name="c_level">
 			<option value="상">상</option>
 			<option value="중">중</option>
 			<option value="중">하</option>

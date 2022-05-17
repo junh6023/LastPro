@@ -69,7 +69,7 @@
 										<li><div class="img" ><img src="./mimg/<%=bl.getM_img()%>" width="100%" height="400px"></div></li>
 										<li><h2><p class="txt01" >산이름: <%=bl.getM_name() %></p></h2></li>
 										<li><h2><p class="txt02" >산 난이도: <%=bl.getM_level() %></p></h2><br></li>		
-										<h3><a href="#" >산 코스보기 Click!</a></h3>	
+										<h3><a href="courseview?m_id='<%=bl.getM_id()%>'" >산 코스보기 Click!</a></h3>	
 										
 									</ul>
 								</div>

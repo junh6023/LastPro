@@ -151,7 +151,7 @@ h1{
 .searchArea form input:focus {outline:none;}
 
 .main_text0 { padding:100px 0; }
-.icons li { padding:30px 10px; position:relative; }
+.icons li { padding:30px 10px; position:relative; height: 479px; margin-top: 3px; }
 .icons li .more { position:absolute; bottom:10px; right:50%; margin-right:-50px; }
 
 .main_text1 { padding:100px 0; }

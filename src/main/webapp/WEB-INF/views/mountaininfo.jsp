@@ -62,22 +62,20 @@
 							<div class="tamp-title" > 한라산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">1947M</span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">상</span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">제주도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+								
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=2">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -88,9 +86,9 @@
 							<li>
 						<div class="swiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><img src="resources/image/mo.png"></div>
-								<div class="swiper-slide"><img src="resources/image/we.png"></div>
-								<div class="swiper-slide"><img src="resources/image/aaa.png"></div>
+								<div class="swiper-slide"><img src="resources/image/test3.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test4.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test5.jpg"></div>
 							</div>
 							<div class="swiper-pagination"></div>
 							<div class="swiper-button-prev"></div>
@@ -98,25 +96,23 @@
 						 </div>
 					
 						<div class="data-tamp" >
-							<div class="tamp-title" > 한라산</div>
+							<div class="tamp-title" > 지리산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">1696M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">상 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">경상남도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+								
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=3">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -125,9 +121,9 @@
 							<li>
 						<div class="swiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><img src="resources/image/mo.png"></div>
-								<div class="swiper-slide"><img src="resources/image/we.png"></div>
-								<div class="swiper-slide"><img src="resources/image/aaa.png"></div>
+								<div class="swiper-slide"><img src="resources/image/test2.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test6.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test7.jpg"></div>
 							</div>
 							<div class="swiper-pagination"></div>
 							<div class="swiper-button-prev"></div>
@@ -135,25 +131,23 @@
 						 </div>
 					
 						<div class="data-tamp" >
-							<div class="tamp-title" > 한라산</div>
+							<div class="tamp-title" > 태백산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">1432.6M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">상 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">경상남도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+								
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=4">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -172,25 +166,23 @@
 						 </div>
 					
 						<div class="data-tamp" >
-							<div class="tamp-title" > 한라산</div>
+							<div class="tamp-title" > 칠갑산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">561M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">중 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">충청남도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+							
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=7">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -200,9 +192,9 @@
 							<li>
 						<div class="swiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><img src="resources/image/mo.png"></div>
-								<div class="swiper-slide"><img src="resources/image/we.png"></div>
-								<div class="swiper-slide"><img src="resources/image/aaa.png"></div>
+								<div class="swiper-slide"><img src="resources/image/test11.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test12.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test13.jpg"></div>
 							</div>
 							<div class="swiper-pagination"></div>
 							<div class="swiper-button-prev"></div>
@@ -210,7 +202,7 @@
 						 </div>
 					
 						<div class="data-tamp" >
-							<div class="tamp-title" > 한라산</div>
+							<div class="tamp-title" > 용문산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
 									<span class="txt1" >높이:</span><span class="txt2">123 </span>
@@ -228,7 +220,7 @@
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=9">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -237,9 +229,9 @@
 						<li>
 						<div class="swiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><img src="resources/image/mo.png"></div>
-								<div class="swiper-slide"><img src="resources/image/we.png"></div>
-								<div class="swiper-slide"><img src="resources/image/aaa.png"></div>
+								<div class="swiper-slide"><img src="resources/image/test14.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test15.jpg"></div>
+								<div class="swiper-slide"><img src="resources/image/test16.jpg"></div>
 							</div>
 							<div class="swiper-pagination"></div>
 							<div class="swiper-button-prev"></div>
@@ -247,25 +239,23 @@
 						 </div>
 					
 						<div class="data-tamp" >
-							<div class="tamp-title" > 한라산</div>
+							<div class="tamp-title" > 가공산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">585M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">중 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">전라남도</span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+							
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=5">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -286,23 +276,20 @@
 						<div class="data-tamp" >
 							<div class="tamp-title" > 한라산</div>
 							<div class="tamp-cont" >
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+							<div class="tamp-txt" >
+									<span class="txt1" >높이:</span><span class="txt2">1947M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">상 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
-								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">제주도 </span>
 								</div>
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id='2'">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>
@@ -324,22 +311,20 @@
 							<div class="tamp-title" > 한라산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">1947M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">상 </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">제주도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+								
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
-							<a href="cousesee?mid=1">코스보기</a>
+							<a href="courseview?m_id=2">코스보기</a>
 							<a href="#">지금날씨보기</a>
 						</div>
 					</li>

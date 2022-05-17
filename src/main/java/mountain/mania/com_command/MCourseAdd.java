@@ -46,10 +46,10 @@ public class MCourseAdd implements MCommand {
      	      
    			String file1 = (String)files.nextElement();
    			filename1 = multi.getFilesystemName("img");
-   			System.out.println("코스레벨:"+multi.getParameter("course_lev"));
+   			System.out.println("코스레벨:"+multi.getParameter("c_level"));
    			cdto.setM_id(Integer.parseInt(multi.getParameter("m_id")));
    			
-   			cdto.setCourse_lev(multi.getParameter("course_lev"));
+   			cdto.setC_level(multi.getParameter("c_level"));
    			//cdto.setClear_time(multi.getParameter("clear_time"));
    			cdto.setImg(filename1);
    			
