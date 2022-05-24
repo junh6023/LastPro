@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 
@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.slacademy.last_project.Gcommand.mypage_command;
 import com.slacademy.last_project.Mcommand.Mountain_map;
@@ -46,17 +47,24 @@ public class MountainController {
 	public String test(Model model,HttpServletRequest request) {
 		System.out.println("test");
 		command = new Mountain_map();
-		command = new BigGroupListCommand6();
+		//command = new BigGroupListCommand6();
 		//command = new SmallGroupListCommand6();
+		
 		command.execute(model);	
+		
 		return "test";
 	}
-	@RequestMapping("/test2")
-	public String test2() {
-		System.out.println("test2");
-
-		return "test2";
-	}
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+       
+        
+        HttpSession session = request.getSession();
+        
+        session.invalidate();
+        
+        return "redirect:test";        
+        
+    }
 	@RequestMapping("/mname_form")
 	public String mname_form() {
 		System.out.println("mname_form");
@@ -71,9 +79,9 @@ public class MountainController {
 	}
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest request,Model model) {
-		System.out.println("mypage");
+		System.out.println("controller: mypage");
 		model.addAttribute("request", request);
-		System.out.println(model);
+		
 		command = new mypage_command();
 		command.execute(model);	
 		return "mypage";
@@ -93,6 +101,7 @@ public class MountainController {
 		//정보 파싱 
 		model.addAttribute("weather", elem);
 		System.out.println(elem);
+		
 		command = new RecommendView();
 		command.execute(model);
 		return "mountaininfo";

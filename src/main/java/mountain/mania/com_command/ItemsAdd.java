@@ -22,7 +22,7 @@ public class ItemsAdd implements MCommand{
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		MDao mdao=new MDao();
 	   	IDto idto=new IDto();
-	  
+	   
 	   	
 		String realFolder="";
    		String saveFolder="mimg";

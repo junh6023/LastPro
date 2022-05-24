@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="sg_active_save" method="post"  >
-<input type="hidden" name="u_id" value="test11">
+<input type="hidden" name="u_id" value="${res.u_id}">
 <table>
 <tr>
 <td>모임:</td><td><input type="text" name="sg_id"></td>

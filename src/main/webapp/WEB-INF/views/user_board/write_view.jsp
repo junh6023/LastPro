@@ -21,6 +21,7 @@
 	function replyboard(){
 		boardform.submit();
 	}
+	
 	</script>
 
 <meta charset="UTF-8">
@@ -28,14 +29,20 @@
 
 </head>
 <body>
+	<c:if test="${idnull eq 'idnull'}">
+			<script>
+				alert("로그인을 해주세요")
+				location.href="member/loginform.do";
+			</script>
+		</c:if>
 <jsp:include page="../top.jsp" />
 			<div class="conteant" >
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>게시판</h2></li>
 						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -44,7 +51,7 @@
 		<form action="write" method="post" enctype="Multipart/form-data"  >
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="u_id" value="test1" size ="50"></td>
+				<td><input type="text" name="u_id" value="${res.u_id}" size ="50"></td>
 			</tr>
 			<tr>
 				<td> 제목</td>

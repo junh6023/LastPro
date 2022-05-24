@@ -29,11 +29,11 @@
 						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
 						<li><a href="bg_rank30">상위 10랭킹 </a></li>
 						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
-						<li><a href="bg_Schedule?u_id=test3">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
+						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><a href="bg_rank">동호회 랭킹보기</a></li>
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list?">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule?u_id=test15">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -50,7 +50,7 @@
 								<td>소개</td><td>${content.bg_intro}</td>
 							</tr>
 						</table>
-						<a href="big_group_join?bg_id=${content.bg_id}&bg_name=${content.bg_name}&u_id=test11">가입하기</a><!-- 로그인된 유저아이디 ${u_id}해야됨  -->
+						<a href="big_group_join?bg_id=${content.bg_id}&bg_name=${content.bg_name}">가입하기</a><!-- 로그인된 유저아이디 ${u_id}해야됨  -->
 					</c:forEach>
 							
 				</div>

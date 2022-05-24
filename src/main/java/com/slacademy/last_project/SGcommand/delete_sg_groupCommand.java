@@ -3,6 +3,7 @@ package com.slacademy.last_project.SGcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -21,7 +22,10 @@ System.out.println("delete_bg_group 커맨드 들어옴");
 		Map<String, Object> map = model.asMap(); 
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		String u_id	= request.getParameter("u_id");
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
+		//String u_id	= request.getParameter("u_id");
 		int sg_id= Integer.parseInt( request.getParameter("sg_id"));
 		
 		System.out.println(u_id);

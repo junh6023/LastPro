@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -22,10 +23,24 @@ public class bg_joinlist_giCommand implements MCommand {
 		Map<String, Object> map = model.asMap(); //model객체를 asMap을 이용해 Map으로 변환
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String u_id=request.getParameter("u_id");
+		
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
+		
+		//String u_id=request.getParameter("u_id");
 		System.out.println("u_id : " +u_id);
 		
 		ArrayList<GJoinDto> gjdto = gdao.mybg_joinlist(u_id);
+		boolean check=gdao.nav_check(u_id);//동호회 장일 경우에만 보이는 메뉴 리스트 페이지에서 뽑아내려고
+		System.out.println(check);
+		
+		boolean s_check=gdao.small_nav_check(u_id);//동호회 장일 경우에만 보이는 메뉴 리스트 페이지에서 뽑아내려고
+		System.out.println(check);
+		
+		
+		model.addAttribute("check", check);
+		model.addAttribute("s_check", s_check);
 		
 		model.addAttribute("joinlist", gjdto);
 

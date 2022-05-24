@@ -30,18 +30,17 @@
 					<ul>
 						<li><h2>게시판</h2></li>
 						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
 
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="n_write" method="post" enctype="Multipart/form-data"  >
-			<tr>
-				<td>이름</td>
-				<td><input type="text" name="u_id" value="test1" size ="50"></td>
-			</tr>
+			
+			<input type="hidden" name="u_id" value="${res.u_id }" size ="50">
+			
 			<tr>
 				<td> 제목</td>
 				<td> <input type="text" name="b_title" size ="50"></td>

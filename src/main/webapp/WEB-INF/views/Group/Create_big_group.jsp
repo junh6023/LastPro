@@ -29,26 +29,33 @@
 		location.href="group_recruit";
 	</script>
 </c:if>
+
+<c:if test="${idnull eq 'idnull' }">
+	<script>
+		alert("로그인 해주세요");
+		location.href="member/loginform.do";
+	</script>
+
+</c:if>
 	<jsp:include page="../top.jsp" />
 			<div class="conteant" >
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>동호회</h2></li>
 						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
-						<li><a href="bg_rank30">상위 10랭킹 </a></li>
+						<li><a href="bg_rank30">상위 30랭킹 </a></li>
 						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
-						<li><a href="bg_Schedule?u_id=test3">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
-						<li><a href="bg_rank">동호회 랭킹보기</a></li>
+						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list?">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule?u_id=test15">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 				</div>
 				<div class="main-text" >
 				 	<form name="Create_Group_form" action="big_group_addCommand" method="post">
 						<table>
 							<tr>
-							<td>신청자 아이디: </td><td><input type="text" name="u_id" value="${u_id}"></td><!-- 로그인된 유저아이디 ${u_id}해야됨  -->
+							<td>신청자 아이디: </td><td><input type="text" name="u_id" value="${res.u_id}"  readonly></td><!-- 로그인된 유저아이디 ${u_id}해야됨  -->
 							</tr>
 							<tr>
 							<td>동호회 이름 : </td><td><input type="text" name="g_name"></td>			

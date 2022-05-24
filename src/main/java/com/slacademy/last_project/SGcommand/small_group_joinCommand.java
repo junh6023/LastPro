@@ -3,6 +3,7 @@ package com.slacademy.last_project.SGcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -20,9 +21,12 @@ public class small_group_joinCommand implements MCommand {
 		Map<String, Object> map = model.asMap(); //model객체를 asMap을 이용해 Map으로 변환
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		SGDao sgdao= new SGDao();
-				
+			
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
 		int sg_id=Integer.parseInt(request.getParameter("sg_id"));
-		String u_id=request.getParameter("u_id");
+		//String u_id=request.getParameter("u_id");
 		String sg_name=request.getParameter("sg_name");
 		
 		System.out.println(sg_id);

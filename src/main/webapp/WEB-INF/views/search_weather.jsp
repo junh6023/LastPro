@@ -52,8 +52,9 @@
 	<div class="conteant" style="height:auto;" >
 		<div class="mypage-nav">
 			<ul>
-				<li><a href="weather" >전국 날씨보기</a></li>
+				
 				<li><a href="search_weather?area=60 127" class="active">지역별 날씨보기</a></li>
+				<li><a href="mountaininfo?actives=mountaininfo">산 보러가기</a></li>
 			</ul>
 		</div>
 		<div class="main-text">
@@ -115,7 +116,7 @@
 						<option value="63 89">전주</option>
 						<option value="58 74">광주</option>
 						<option value="50 67">목포</option>
-						<option value="52 38">대구</option>
+						<option value="52 38">대전</option>
 						<option value="74 66">여수</option>
 						<option value="102 84">울산</option>
 						<option value="91 106">안동</option>

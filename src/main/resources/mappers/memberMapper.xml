@@ -1,9 +1,9 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-다른 mapper와 중복되지 않도록 네임스페이스 기재
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
-   01. 회원록록
+   <!-- 01. 회원록록 -->
    <select id="memberList"
       resultType="com.example.spring01.member.model.dto.MemberVO">
       SELECT
@@ -15,7 +15,7 @@
       ORDER BY u_date
    </select>
 
-   02. 회원 등록
+   <!-- 02. 회원 등록 -->
    <insert id="insertMember">
       INSERT INTO users
       (U_id, u_address, u_pw, u_name,u_experience,u_level,climb)
@@ -24,7 +24,7 @@
       #{u_name},#{u_experience},#{u_level},#{climb})
    </insert>
 
-   03. 회원정보 상세조회
+   <!-- 03. 회원정보 상세조회 -->
    <select id="viewMember"
       resultType="com.example.spring01.member.model.dto.MemberVO">
       SELECT
@@ -33,7 +33,7 @@
       WHERE u_id = #{u_id}
 
    </select>
-   03. 회원정보 상세조회
+   <!-- 03. 회원정보 상세조회 -->
    <select id="memberviewMember"
       resultType="com.example.spring01.member.model.dto.MemberVO">
       SELECT
@@ -43,7 +43,7 @@
 
    </select>
 
-   04. 회원정보 수정처리
+   <!-- 04. 회원정보 수정처리 -->
    <update id="updateMember">
       UPDATE users
       SET
@@ -62,20 +62,20 @@
       u_id = #{u_id}
    </update>
 
-   05. 회원정보 삭제 처리
+   <!-- 05. 회원정보 삭제 처리 -->
    <delete id="deleteMember">
       DELETE FROM users
       WHERE u_pw = #{u_pw}
    </delete>
 
-   06. 비밀번호 체크
+   <!-- 06. 비밀번호 체크 -->
    <select id="checkPw" resultType="String">
       SELECT
       COUNT(*)
       FROM users
       WHERE u_id = #{u_id} AND u_pw = #{u_pw}
    </select>
-   07로그인 ㅊ ㅔ크
+   <!-- 07로그인 ㅊ ㅔ크 -->
    <select id="memberlogin"
       resultType="com.example.spring01.member.model.dto.MemberVO">
 
@@ -89,7 +89,7 @@
    <insert id="follow">
       insert into follow (my_follow,u_id) values(#{u_id},#{my_follow})
    </insert>
-   01. 회원록록
+   <!-- 01. 회원록록 -->
    <select id="followlist"
       resultType="com.example.spring01.member.model.dto.FollowVO">
       SELECT *
@@ -98,7 +98,7 @@
    </select>
 
 
-   카카오 정보 저장
+   <!-- 카카오 정보 저장 -->
    <insert id="kakaoinsert" parameterType="java.util.HashMap">
       insert into users (u_name, u_id)
       values(#{nickname},#{email})
@@ -109,7 +109,7 @@
       select * from users where u_name=#{nickname} and
       u_id=#{email}
    </select>
-   네이버 정보 저장
+   <!-- 네이버 정보 저장 -->
    <insert id="naverinsert">
       insert into users (u_name, u_id)
       values(#{u_name},#{u_id})
@@ -133,4 +133,4 @@
 
 
 </mapper>
-           -->
+          

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -28,8 +29,9 @@ public class NBListCommand implements MCommand {
 			page=Integer.parseInt(request.getParameter("page")); 
 		}
 		
-		String u_id=request.getParameter("u_id");
-		
+//		String u_id=request.getParameter("u_id");
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
 		
 		int count = dao.Ncount();
 		System.out.println(count);

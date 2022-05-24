@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,30 @@
 <body>
 	<div class="wrap">
 		<div class="intro_bg">
-
+		${userid}
 			<div class="header" id="link_header">
 				<div class="searchArea">
-					<form>
-						<input type="search" placeholder="Search"> <span>검색</span>
+					<form action="msearch">
+						<input type="search" placeholder="Search"> <span type="submit">검색</span>
 					</form>
 				</div>
 				<ul class="nav">
-					<li><a href="loginform">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
-					<li><a href="mypage?u_id=test1">마이페이지</a></li>
+				<c:set var="userid" value="${res.u_id}"/>
+				<c:choose>
+				 <c:when test="${empty userid}">
+					<li><a href="member/loginform.do">로그인</a></li>
+					<li><a href="member/write.do">회원가입</a></li>
+				
+				</c:when>
+				<c:otherwise>
+					<li><a href="#">${userid}님 환영합니다.</a></li>
+					<li><a href="logout">로그아웃</a></li>	
+						<li><a href="mypage">마이페이지</a></li>
+				</c:otherwise>
+				</c:choose>
+				
+								
+				
 
 				</ul>
 
@@ -35,7 +49,7 @@
 		<li>
 			<div>
 				<div class="contents1">
-					<a href="mountaininfo?u_id=1&actives=mountaininfo" class="test1"
+					<a href="mountaininfo?actives=mountaininfo" class="test1"
 						id="test1">산정보</a>
 				</div>
 
@@ -44,7 +58,7 @@
 		<li>
 			<div>
 				<div class="contents1">
-					<a href="weather?actives=weather" class="test1" id="test2">날씨</a>
+					<a href="search_weather?area=60 127&actives=weather" class="test1" id="test2">날씨</a>
 				</div>
 
 			</div>
@@ -67,21 +81,23 @@
 		<li>
 			<div>
 				<div class="contents1">
-					<a href="itemslist?actives=item" class="test1" id="test5">등산장비</a>
+					<a href="itemslist?actives=item&item=상" class="test1" id="test5">등산장비</a>
 				</div>
 			</div>
 		</li>
 		<li>
 			<div>
 				<div class="contents1">
-					<a href="usercenter?actives=uscen" class="test1" id="test6">고객센터</a>
+					<a href="Repetition_QnA?actives=uscen" class="test1" id="test6">고객센터</a>
 				</div>
 			</div>
 		</li>
 	</ul>
 	<!--amount end-->
 	<script>
-		
+	
+	
+	
 	<%String top_page = request.getParameter("actives");
 
 //class 추가부분

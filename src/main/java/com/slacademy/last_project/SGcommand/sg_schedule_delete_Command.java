@@ -3,6 +3,7 @@ package com.slacademy.last_project.SGcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -23,7 +24,10 @@ public class sg_schedule_delete_Command implements MCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		int sgs_id = Integer.parseInt(request.getParameter("sgs_id"));
-		String u_id=request.getParameter("u_id");
+		//String u_id=request.getParameter("u_id");
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+	    
 		System.out.println(sgs_id);
 		System.out.println(u_id);
 		

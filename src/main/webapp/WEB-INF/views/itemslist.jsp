@@ -32,7 +32,12 @@
 	<jsp:include page="top.jsp" />
 	<div class="conteant" >
 		<div class="mypage-nav" >
-		 api 넣을까 생각중
+			<ul>
+				<li><a href="itemslist?actives=item&item=상">상 난이도장비</a></li>
+				<li><a href="itemslist?actives=item&item=중">중 난이도장비</a></li>
+				<li><a href="itemslist?actives=item&item=하">하 난이도장비</a></li>
+				
+			</ul>
 		</div>
 		<div class="main-text" >
 			<div class="data table-wrap"  >

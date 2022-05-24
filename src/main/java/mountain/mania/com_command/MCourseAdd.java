@@ -42,6 +42,7 @@ public class MCourseAdd implements MCommand {
    					"UTF-8",
    					new DefaultFileRenamePolicy());
    			
+   			
    			Enumeration files = multi.getFileNames();
      	      
    			String file1 = (String)files.nextElement();

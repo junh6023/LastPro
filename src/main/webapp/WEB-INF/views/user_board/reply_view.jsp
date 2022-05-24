@@ -36,8 +36,8 @@
 					<ul>
 						<li><h2>게시판</h2></li>
 						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >

@@ -47,11 +47,30 @@ public class SGDao {
 	}
 
 	//모임리스트
-	public ArrayList<SGDto> list() {
+	public ArrayList<SGDto> list(int page, int limit) {
+		
+		final int startrow=(page-1)*10; //읽기 시작할 row 번호.
+	    final int endrow=startrow+limit; //읽을 마지막 row 번호. 
+	    
 		System.out.println("sg list다오 들어옴");
-		String sql="select * from small_group_list order by sg_id";
-		return (ArrayList<SGDto>) template.query(sql, new BeanPropertyRowMapper<SGDto>(SGDto.class));
-	}
+		//String sql="select * from small_group_list order by sg_id";
+		//return (ArrayList<SGDto>) template.query(sql, new BeanPropertyRowMapper<SGDto>(SGDto.class));
+		
+		String sql="select * from small_group_list order by sg_id LIMIT ?,? ";
+				
+//				String sql="select * from big_group_list order by bg_id";
+				return (ArrayList<SGDto>) template.query(sql, new PreparedStatementSetter() {
+
+					@Override
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setInt(1, startrow);
+						ps.setInt(2, endrow);
+						
+					}
+					
+				},new BeanPropertyRowMapper<SGDto>(SGDto.class));
+			}
+	
 	//모임가입시 추가
 	public void SGroup_add(final String u_id, final String sg_name,final String sg_intro) {
 
@@ -335,7 +354,7 @@ public class SGDao {
 		}
 
 		System.out.println(num);
-		String sql = "insert into sg_scheduler values("+num+",?,(select m_name from mountain where m_id=?),(select sg_name from small_group_list where u_id=?),(select course_name from course where c_id=?),?,?)";
+		String sql = "insert into sg_scheduler values("+num+",?,(select m_name from mountain where m_id=?),(select sg_name from small_group_list where u_id=?),(select c_level from course where c_id=?),?,?)";
 		this.template.update(sql, new PreparedStatementSetter() {
 
 			@Override
@@ -552,6 +571,51 @@ public class SGDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	//소모임리스트 서치
+	public ArrayList<SGDto> search(final String search) {
+		String sql = "select * from small_group_list where sg_name like ?";
+		return (ArrayList<SGDto>) template.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1,"%"+search+"%");
+				
+			}
+			
+		},new BeanPropertyRowMapper<SGDto>(SGDto.class));
+	}
+
+	public boolean sg_nameCheck(final String sg_name) {
+		String sql= "select sg_name from small_group_list where sg_name =?";
+		ArrayList<SGDto> sg_nameCheck = (ArrayList<SGDto>) template.query(sql,new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, sg_name);
+				
+			}
+			
+		},new BeanPropertyRowMapper<SGDto>(SGDto.class));
+		
+	
+		for(int i=0;i<sg_nameCheck.size();i++) {
+			String name=sg_nameCheck.get(i).getSg_name();
+			
+			if(name.trim().contains(sg_name)) {
+				return false;
+			}
+	
+	}
+		return true;
+	}
+
+	public int count() {
+		int count=0;
+		String query = "select count(*) as count from small_group_list";//as count 컬럼 명 변경해줌
+		return template.queryForObject(query, Integer.class);//답변을 Integer로 바꿔서 리턴해줌 기본타입과 레퍼타입은 서로 자유롭게 섞어 쓸 수 있다/낮은 버전에서는 안됨
+	}
+
+
 
 
 

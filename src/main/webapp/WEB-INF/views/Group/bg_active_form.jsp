@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="bg_active_save" method="post"  >
-<input type="hidden" name="u_id" value="test5">
+<input type="hidden" name="u_id" value="${res.u_id}">
 <table>
 <tr>
 <td>동호회:</td><td><input type="text" name="bg_id"></td>

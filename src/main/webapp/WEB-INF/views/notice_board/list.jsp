@@ -29,8 +29,8 @@
 					<ul>
 						<li><h2>게시판</h2></li>
 						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -66,18 +66,14 @@
 				font-size:10pt;" align="left">
 			
 			
-				<c:choose>
-			
-				<c:when test = "${0 ne dto.b_lev}" >
+
 				
-				<c:forEach var="i" begin="0" end="${dto.b_lev*2}">&nbsp;</c:forEach>
-				▶
-				</c:when>
-				<c:otherwise>
+				<c:forEach var="i" begin="0" end="${dto.b_lev*2}"></c:forEach>
+
+
 				★
-				</c:otherwise>
-				</c:choose>
-			<a href="n_content_view?b_id=${dto.b_id}&u_id=test1" >${dto.b_title}</a>
+
+			<a href="n_content_view?b_id=${dto.b_id}" >${dto.b_title}</a>
 			</td>
 
 				<td>${dto.b_date}</td>
@@ -124,7 +120,7 @@
 	
 	<tr>
 	
-		<form action="search_nboard?u_id=test2" method="post" align="center">
+		<form action="search_nboard" method="post" align="center">
 			<td colspan="5"><input type="text" name="searchs">&nbsp;<input type="submit" value="검색"></td>
 		</form>
 	</tr>

@@ -6,6 +6,14 @@ public class IDto {
 	private String img;
 	private String site;
 	private String items_name;
+	private String ilevel;
+	
+	public String getIlevel() {
+		return ilevel;
+	}
+	public void setIlevel(String ilevel) {
+		this.ilevel = ilevel;
+	}
 	public int getItem_id() {
 		return item_id;
 	}

@@ -23,15 +23,14 @@
 	<div class="conteant" >
 				<div class="mypage-nav" >
 					<ul>
-						<li><a href="#">자주 묻는 질문</a></li>
-						<li><a href="#">문의하기</a></li>
+						<li><a href="Repetition_QnA">자주 묻는 질문</a></li>
+						<li><a href="QnA_list">문의하기</a></li>
 						
 					</ul>
 				</div>
 				<div class="main-text" >
 					
-				 	
-				 	
+						 
 				</div>
 			</div>
 	

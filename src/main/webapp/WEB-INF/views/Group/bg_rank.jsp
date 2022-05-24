@@ -27,13 +27,12 @@
 					<ul>
 						<li><h2>동호회</h2></li>
 						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
-						<li><a href="bg_rank30">상위 10랭킹 </a></li>
+						<li><a href="bg_rank30">상위 30랭킹 </a></li>
 						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
-						<li><a href="bg_Schedule?u_id=test3">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
-						<li><a href="bg_rank">동호회 랭킹보기</a></li>
+						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list?">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule?u_id=test15">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 
 					</ul>
@@ -61,6 +60,41 @@
 					<td>${rank.bg_date}</td>
 				</tr>
 				</c:forEach>
+				<tr align=center height=20>
+	<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+			
+				<c:choose>
+					<c:when test = "${page<=1}" >
+						[이전]&nbsp;
+					</c:when>
+					<c:otherwise>
+						<a href="bg_rank?page=${page-1}">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				
+	
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:choose>
+						<c:when test = "${a==page}">
+							[${a}]
+						</c:when>
+						<c:otherwise>
+							<a href="bg_rank?page=${a}">[${a}]</a>&nbsp;
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					
+				<c:choose>
+					<c:when test ="${page>=maxpage}">
+						[다음]
+					</c:when>
+					
+					<c:otherwise>
+						<a href="bg_rank?page=${page+1}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
+	</tr>	
 			</table>
 					
 		

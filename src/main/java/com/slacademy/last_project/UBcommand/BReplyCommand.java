@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -39,7 +40,11 @@ public class BReplyCommand implements MCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String b_id = request.getParameter("b_id");
 		String b_lev = request.getParameter("b_lev");
-		String u_id = request.getParameter("u_id");
+		//String u_id = request.getParameter("u_id");
+		
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+	    
 		String b_title = request.getParameter("b_title");
 		String b_content = request.getParameter("b_content");
 		String b_pw = request.getParameter("b_pw");

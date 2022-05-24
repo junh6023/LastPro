@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-
+import com.slacademy.last_project.GDTO.GDto;
+import com.slacademy.last_project.SGDTO.SGDto;
 
 import mountain.mania.com_DAO.MDao;
 import mountain.mania.com_DTO.MDto;
@@ -26,8 +27,14 @@ public class Mountain_map implements MCommand {
 		
 		System.out.println(list);
 		
+		ArrayList<GDto>gdto= mdao.list6();
+		ArrayList<SGDto>sgdto= mdao.Slist6();
+		ArrayList<GDto>gdtorank=mdao.bg_rank6();
 		model.addAttribute("list", list);
-		
+		 
+		 model.addAttribute("bg_rank", gdtorank);
+		model.addAttribute("slist6", sgdto);
+		model.addAttribute("list6", gdto);
 		
 
 	}

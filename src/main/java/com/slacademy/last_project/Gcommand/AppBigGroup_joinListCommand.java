@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -21,7 +22,8 @@ public class AppBigGroup_joinListCommand implements MCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		GDao gdao=new GDao();
 		
-		String u_id = request.getParameter("u_id");
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
 		
 		ArrayList<GJoinDto> gdto=gdao.bg_joinlist(u_id);
 

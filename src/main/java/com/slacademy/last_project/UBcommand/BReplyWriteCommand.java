@@ -3,6 +3,7 @@ package com.slacademy.last_project.UBcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -18,8 +19,11 @@ public class BReplyWriteCommand implements MCommand {
 	    Map<String ,Object> map=model.asMap();
 	    HttpServletRequest request= (HttpServletRequest)map.get("request");
 	    
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+	    
 		String b_id = request.getParameter("b_id");
-		String u_id = request.getParameter("u_id");
+		//String u_id = request.getParameter("u_id");
 		String uphit_change="no";
 		BDao dao= new BDao();
 		BDto dto = new BDto();

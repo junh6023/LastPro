@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -24,8 +25,9 @@ public class search_nboard implements MCommand {
 	      int page=1; 
 		  int limit=10;
 		  
-		  
-		  String u_id=request.getParameter("u_id");
+			HttpSession session = request.getSession();
+		    String u_id= (String) session.getAttribute("u_id");
+		 // String u_id=request.getParameter("u_id");
 		  
 		  if(request.getParameter("page")!=null){ //넘겨받은 페이지가 널이 아닐때 값을 페이지에 넣어줌
 				page=Integer.parseInt(request.getParameter("page")); 

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			var num = title.el.fcSeg.eventRange.def.extendedProps.num;
 			var bg_name=title.el.fcSeg.eventRange.def.extendedProps.bg_name;
 			alert("realTitle :"+realTitle+"bgsid : "+num+"bg_name"+bg_name);
-			location.href="bg_Schedule_check?title="+realTitle+"&&bgs_id="+num+"&&bg_name="+bg_name+"&&u_id=test3";
+			location.href="bg_Schedule_check?title="+realTitle+"&&bgs_id="+num+"&&bg_name="+bg_name;
 		},
 		titleFormat : function(date) {
 			return date.date.year + '년 ' + (parseInt(date.date.month) + 1) + '월';
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			var num = title.el.fcSeg.eventRange.def.extendedProps.num;
 			var bg_name=title.el.fcSeg.eventRange.def.extendedProps.bg_name;
 			alert("realTitle :"+realTitle+"bgsid : "+num+"bg_name"+bg_name);
-			location.href="bg_Schedule_check?title="+realTitle+"&&bgs_id="+num+"&&bg_name="+bg_name+"&&u_id=test3";
+			location.href="bg_Schedule_check?title="+realTitle+"&&bgs_id="+num+"&&bg_name="+bg_name;
 		},
 		titleFormat : function(date) {
 			return date.date.year + '년 ' + (parseInt(date.date.month) + 1) + '월';

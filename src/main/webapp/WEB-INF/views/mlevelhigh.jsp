@@ -38,9 +38,9 @@
 		 
 		
 			<ul>
-				<li><a href="levelhigh?m_level=상" <%if(getlevel.equals("상")){ %>class="active"<%} %>>상 난이도 </a></li>
-				<li><a href="levelhigh?m_level=중" <%if(getlevel.equals("중")){ %>class="active"<%} %>>중 난이도 </a></li>
-				<li><a href="levelhigh?m_level=하" <%if(getlevel.equals("하")){ %>class="active"<%} %>>하 난이도 </a></li>
+				<li><a href="levelhigh?m_level=상&actives=mountaininfo" <%if(getlevel.equals("상")){ %>class="active"<%} %>>상 난이도 </a></li>
+				<li><a href="levelhigh?m_level=중&actives=mountaininfo" <%if(getlevel.equals("중")){ %>class="active"<%} %>>중 난이도 </a></li>
+				<li><a href="levelhigh?m_level=하&actives=mountaininfo" <%if(getlevel.equals("하")){ %>class="active"<%} %>>하 난이도 </a></li>
 			</ul>
 		</div>
 		<div class="main-text" >

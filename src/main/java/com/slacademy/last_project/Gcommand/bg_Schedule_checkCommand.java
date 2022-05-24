@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -24,7 +25,11 @@ public class bg_Schedule_checkCommand implements MCommand {
 		int bgs_id=Integer.parseInt(request.getParameter("bgs_id"));
 		String title = request.getParameter("title");
 		String bg_name= request.getParameter("bg_name");
-		String u_id= request.getParameter("u_id");
+		//String u_id= request.getParameter("u_id");
+		
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
 		
 		System.out.println(bgs_id);
 		System.out.println(title);

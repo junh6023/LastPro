@@ -20,7 +20,7 @@ public class ItemsList implements MCommand{
 		MDao mdao = new MDao();
 		IDto idto = new IDto();
 		List boardlist=new ArrayList(); //게시글을 읽어오기위해
-	      
+	    String item = request.getParameter("item");
         int page=1;
         int limit=8;
       
@@ -31,7 +31,7 @@ public class ItemsList implements MCommand{
       
       
       int listcount=mdao.getitemscount(); //총 리스트 수를 받아옴.
-      boardlist = mdao.getItemsList(page,limit); //리스트를 받아옴.
+      boardlist = mdao.getItemsList(page,limit,item); //리스트를 받아옴.
       
       //총 페이지 수.
          int maxpage=(int)((double)listcount/limit+0.95); //0.95를 더해서 올림 처리.

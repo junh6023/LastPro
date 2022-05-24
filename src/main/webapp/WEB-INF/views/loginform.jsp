@@ -16,77 +16,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="wrap">
-		<div class="intro_bg">
-		
-			<div class="header" id="link_header">
-				<div class="searchArea">
-					<form>
-						<input type="search" placeholder="Search"> <span>검색</span>
-					</form>
-				</div>
-				<ul class="nav">
-					<li><a href="loginform">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
-					<li><a href="#">마이페이지</a></li>
-					
-				</ul>
 
-			</div>
-			<div class="intro_text">
-				<a href="test"><h1>맛동산</h1></a>
-			</div>
-		</div>
-	</div>
-	<!-- intro end-->
-
-	<ul class="amount">
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#" class="active">산정보</a>
-				</div>
-				
-			</div>
-		</li>
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#">날씨</a>
-				</div>
-				
-			</div>
-		</li>
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#">모임</a>
-				</div>
-				
-			</div>
-		</li>
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#">게시판</a>
-				</div>
-			</div>
-		</li>
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#">등산장비</a>
-				</div>
-			</div>
-		</li>
-		<li>
-			<div>
-				<div class="contents1">
-				<a href="#">고객센터</a>
-				</div>
-			</div>
-		</li>
-	</ul>
+	<jsp:include page="top.jsp" />
 	<div class="main_text0" id="link_main_text0">
 	<form action="" method="post">
 	

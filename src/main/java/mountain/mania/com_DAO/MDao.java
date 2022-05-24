@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 
 import com.slacademy.last_project.GDTO.GDto;
+import com.slacademy.last_project.SGDTO.SGDto;
 import com.slacademy.last_project.UBDto.BDto;
 
 import mountain.mania.com_DTO.CDto;
@@ -144,7 +145,7 @@ public class MDao {
 
 
 
-		String sql2="insert into items (item_id,items_name,site,img,test,test1) values("+num+",?,?,?,?,?)";
+		String sql2="insert into items (item_id,items_name,site,img,ilevel) values("+num+",?,?,?,?)";
 
 
 		this.template.update(sql2, new PreparedStatementSetter() { //업데이트에 사용
@@ -156,8 +157,8 @@ public class MDao {
 				pstmt.setString(1, idto.getItems_name());
 				pstmt.setString(2, idto.getSite());
 				pstmt.setString(3, idto.getImg());
-				pstmt.setString(4, "test");
-				pstmt.setString(5, "test1");
+				pstmt.setString(4, "상");
+				
 
 			}
 		});
@@ -170,7 +171,7 @@ public class MDao {
 		return template.queryForObject(query, Integer.class);   //셀렉 문 사용queryForObject = 싱글 반환
 	}
 
-	public ArrayList<IDto> getItemsList(int page, int limit) {
+	public ArrayList<IDto> getItemsList(int page, int limit,final String item) {
 		final int startrow=(page-1)*8; //읽기 시작할 row 번호.
 		final int endrow=startrow+limit; //읽을 마지막 row 번호.
 		//			String query = "select * from (select rownum rnum,m_id,m_name,m_level,"+
@@ -184,15 +185,15 @@ public class MDao {
 		//					"(select * from mountain order by m_id asc)) "+
 		//					"where rnum>=? and rnum<=? and m_level=?" ;
 		//		String query = "select * from mountain where m_level=? ";
-		String query = "select * from items limit ?,?";
+		String query = "select * from items where ilevel = ? limit ?,?";
 		return  (ArrayList<IDto>)template.query(query, new PreparedStatementSetter() { //업데이트에 사용
 
 			@Override
 			public void setValues(PreparedStatement pstmt) throws SQLException {
 
-
-				pstmt.setInt(1, startrow);
-				pstmt.setInt(2, endrow);
+				pstmt.setString(1, item);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
 
 			}
 		} , new BeanPropertyRowMapper<IDto>(IDto.class) );
@@ -212,7 +213,7 @@ public class MDao {
 
 	public int getRecommend(final String u_id) {
 		System.out.println("getRecommend:왔나요?");
-		String query="select level from active where u_id = ?";
+		String query="select u_level from users where u_id = ?";
 		int count=0;
 		count=template.query(query, new PreparedStatementSetter() { //업데이트에 사용
 
@@ -547,6 +548,36 @@ public class MDao {
 		//String sql="select * from big_group_list order by bg_id";
 		return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
 }
+
+
+		//모임리스트
+		public ArrayList<SGDto> Slist6() {
+			System.out.println("sg list다오 들어옴");
+			String sql="select * from small_group_list order by sg_id limit 0,6";
+			return (ArrayList<SGDto>) template.query(sql, new BeanPropertyRowMapper<SGDto>(SGDto.class));
+		}
+
+		public ArrayList<GDto> bg_rank6() {
+
+			String sql="select bg_id, bg_name, u_id,bg_experience, "
+					+ " case "
+					+ " when bg_experience > 5"
+					+ " then '6'"
+					+ " when bg_experience > 4"
+					+ " then '5'"
+					+ " when bg_experience > 3"
+					+ " then '4'"
+					+ " when bg_experience > 2"
+					+ " then '3'"
+					+ " when bg_experience > 1"
+					+ " then '2'"
+					+ " else '1'"
+					+ " end as bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list limit 0,6";
+
+
+			return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
+		}
+
 }
 
 

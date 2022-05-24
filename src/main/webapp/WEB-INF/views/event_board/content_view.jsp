@@ -31,8 +31,8 @@
 					<ul>
 						<li><h2>게시판</h2></li>
 						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -64,7 +64,7 @@
              <tr>
                 <td> 사진 </td>
                  <td style="font-family: 돋음; font-size: 12"><c:if test="${not empty content_view.b_img}">
-               <a href="./img/${content_view.b_img}"> <img src="./img/${content_view.b_img}" width="50%" height="400px" ></a>
+               <img src="img/${content_view.b_img}" height="150px" weight="150px"> 
               
             </c:if>
             </td>

@@ -16,7 +16,7 @@ import mountain.mania.com_command.MCommand;
 public class BigGroupListCommand6 implements MCommand{
 
 	@Override
-	public void execute(Model model) {
+	public void execute(Model model1) {
 		// TODO Auto-generated method stub
 		MDao gdao = new MDao();
 		//ArrayList<GDto>list = new ArrayList<GDto>();
@@ -28,9 +28,9 @@ public class BigGroupListCommand6 implements MCommand{
 		
 		ArrayList<GDto>gdto= gdao.list6();
 		
-		model.addAttribute("list6", gdto);
+		model1.addAttribute("list6", gdto);
 		//model.addAttribute("check", check);
-		System.out.println(model);
+		
 		
 	}
 

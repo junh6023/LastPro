@@ -7,80 +7,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.slacademy.last_project.EBcommand.EBContentCommand;
-import com.slacademy.last_project.EBcommand.EBDeleteCommand;
-import com.slacademy.last_project.EBcommand.EBListCommand;
-import com.slacademy.last_project.EBcommand.EBModifyCommand;
-import com.slacademy.last_project.EBcommand.EBModifyViewCommand;
-import com.slacademy.last_project.EBcommand.EBWriteCommand;
-import com.slacademy.last_project.EBcommand.search_eboard;
-import com.slacademy.last_project.Gcommand.BigGroupListCommand;
-
-import com.slacademy.last_project.Gcommand.BigGroup_contentCommand;
-import com.slacademy.last_project.Gcommand.BigGroup_joinCommand;
-import com.slacademy.last_project.Gcommand.BigGroup_joinListCommand;
-import com.slacademy.last_project.Gcommand.BigGroupaddCommand;
-import com.slacademy.last_project.Gcommand.Create_bg_check_Command;
-import com.slacademy.last_project.Gcommand.bg_Schedule_Command;
-import com.slacademy.last_project.Gcommand.bg_Schedule_checkCommand;
-import com.slacademy.last_project.Gcommand.bg_Schedule_saveCommand;
-import com.slacademy.last_project.Gcommand.bg_Schedule_write1_Command;
-import com.slacademy.last_project.Gcommand.bg_Schedule_write_view1;
-import com.slacademy.last_project.Gcommand.bg_activeCommand;
-import com.slacademy.last_project.Gcommand.bg_active_saveCommand;
-import com.slacademy.last_project.Gcommand.bg_joinlist_giCommand;
-import com.slacademy.last_project.Gcommand.bg_member_list;
-import com.slacademy.last_project.Gcommand.bg_member_out_Command;
-import com.slacademy.last_project.Gcommand.bg_rank;
-import com.slacademy.last_project.Gcommand.bg_schedule_delete_Command;
-import com.slacademy.last_project.Gcommand.bg_schedule_modifyCommand;
-import com.slacademy.last_project.Gcommand.bg_schedule_modifyaction_Command;
-import com.slacademy.last_project.Gcommand.delete_bg_group;
-import com.slacademy.last_project.Gcommand.join_bg_listcommand;
-import com.slacademy.last_project.Gcommand.nocommand;
-import com.slacademy.last_project.Gcommand.search_Command;
-import com.slacademy.last_project.Gcommand.yescommand;
+import com.slacademy.last_project.CScommand.*;
+import com.slacademy.last_project.EBcommand.*;
+import com.slacademy.last_project.Gcommand.*;
 import com.slacademy.last_project.Mcommand.Mountain_map;
-import com.slacademy.last_project.NBcommand.NBContentCommand;
-import com.slacademy.last_project.NBcommand.NBDeleteCommand;
-import com.slacademy.last_project.NBcommand.NBListCommand;
-import com.slacademy.last_project.NBcommand.NBModifyCommand;
-import com.slacademy.last_project.NBcommand.NBModifyViewCommand;
-import com.slacademy.last_project.NBcommand.NBWriteCommand;
-import com.slacademy.last_project.NBcommand.search_nboard;
-import com.slacademy.last_project.SGcommand.SmallGroupListCommand;
-import com.slacademy.last_project.SGcommand.delete_sg_groupCommand;
-import com.slacademy.last_project.SGcommand.join_sgroup_listcommand;
-import com.slacademy.last_project.SGcommand.sg_Schedule_Command;
-import com.slacademy.last_project.SGcommand.sg_Schedule_checkCommand;
-import com.slacademy.last_project.SGcommand.sg_Schedule_saveCommand;
-import com.slacademy.last_project.SGcommand.sg_Schedule_write1_Command;
-import com.slacademy.last_project.SGcommand.sg_Schedule_write_view1;
-import com.slacademy.last_project.SGcommand.sg_activeCommand;
-import com.slacademy.last_project.SGcommand.sg_active_saveCommand;
-import com.slacademy.last_project.SGcommand.sg_joinlist_giCommand;
-import com.slacademy.last_project.SGcommand.sg_member_listCommand;
-import com.slacademy.last_project.SGcommand.sg_member_out_Command;
-import com.slacademy.last_project.SGcommand.sg_nocommand;
-import com.slacademy.last_project.SGcommand.sg_schedule_delete_Command;
-import com.slacademy.last_project.SGcommand.sg_schedule_modifyCommand;
-import com.slacademy.last_project.SGcommand.sg_schedule_modifyaction_Command;
-import com.slacademy.last_project.SGcommand.sg_yescommand;
-import com.slacademy.last_project.SGcommand.small_group_addCommand;
-import com.slacademy.last_project.SGcommand.small_group_contentCommand;
-import com.slacademy.last_project.SGcommand.small_group_joinCommand;
-import com.slacademy.last_project.SGcommand.small_group_joinlistCommand;
-import com.slacademy.last_project.UBcommand.BContentCommand;
-import com.slacademy.last_project.UBcommand.BDeleteCommand;
-import com.slacademy.last_project.UBcommand.BListCommand;
-import com.slacademy.last_project.UBcommand.BModifyCommand;
-import com.slacademy.last_project.UBcommand.BModifyViewCommand;
-import com.slacademy.last_project.UBcommand.BReplyCommand;
-import com.slacademy.last_project.UBcommand.BReplyWriteCommand;
-import com.slacademy.last_project.UBcommand.BWriteCommand;
-import com.slacademy.last_project.UBcommand.search_uboard;
-
+import com.slacademy.last_project.NBcommand.*;
+import com.slacademy.last_project.QnAcommand.*;
+import com.slacademy.last_project.SGcommand.*;
+import com.slacademy.last_project.UBcommand.*;
 import mountain.mania.com_command.MCommand;
 import mountain.mania.com_util.Constant;
 @Controller
@@ -117,13 +51,13 @@ public class GroupController {
 
 		@RequestMapping("/group_recruit")
 		public String Group_recruit() {	
-			System.out.println("모집글 페이지 컨트롤러");
+			
 			return "Group/group_recruit";
 		}
 
 		@RequestMapping("/Create_big_group")
 		public String Create_Group(HttpServletRequest request, Model model) {
-			System.out.println("동호회 만들기 페이지 컨트롤러");
+			
 			model.addAttribute("request", request);
 			command = new Create_bg_check_Command();
 			command.execute(model);
@@ -228,13 +162,13 @@ public class GroupController {
 		}
 
 		//내 동호회 멤버 리스트
-		@RequestMapping("/bg_member_list ")
+		@RequestMapping("/bg_member_list")
 		public String bg_member_list (HttpServletRequest request, Model model ) {
-			System.out.println("동호회랭크보기 컨트롤러");	
+			
 			model.addAttribute("request", request);
 			command=new bg_member_list();
 			command.execute(model);
-
+			System.out.println("bg_test1");
 			return "Group/bg_member_list";
 		}
 
@@ -361,19 +295,36 @@ public class GroupController {
 
 			return "Group/search";
 		}
+		
+		//동호회리스트 더보기 - 서치
+			@RequestMapping("/bglist_search")
+			public String bglist_search(HttpServletRequest request, Model model ) {
+				System.out.println(" bglist_search컨트롤러");	
+				model.addAttribute("request", request);
+				command=new bglist_searchCommand();
+				command.execute(model);
+				
+				return "Group/bglist_search";
+			}
+			
 
 
 		///////////////////////////////////////////여기부턴 소모임////////////////////////
 
 
 		@RequestMapping("/Create_small_group")
-		public String Create_small_group() {	
+		public String Create_small_group(HttpServletRequest request, Model model) {	
+			model.addAttribute("request",request);		
+			command = new logincheck();
+			command.execute(model);
+			
 			return "SGroup/Create_small_group";
 		}
-		//동호회리스트 모두 볼때
+		//모임리스트 모두 볼때
 		@RequestMapping("/small_group_list")
-		public String SmallGroupList(Model model) {
-			System.out.println("모임 리스트 컨트롤러");	
+		public String SmallGroupList(HttpServletRequest request, Model model) {
+			System.out.println("모임 리스트 컨트롤러");
+			model.addAttribute("request", request);
 			command = new SmallGroupListCommand();
 			command.execute(model);	
 			return "SGroup/small_group_list";
@@ -474,7 +425,7 @@ public class GroupController {
 		}
 
 		//내 모임 멤버 리스트
-		@RequestMapping("/sg_member_list ")
+		@RequestMapping("/sg_member_list")
 		public String sg_member_list (HttpServletRequest request, Model model ) {
 			System.out.println("동호회랭크보기 컨트롤러");	
 			model.addAttribute("request", request);
@@ -579,6 +530,17 @@ public class GroupController {
 
 			return "redirect:small_group_list";
 		}
+		
+		//모임리스트 더보기 - 서치
+		@RequestMapping("/sglist_search")
+		public String sglist_search(HttpServletRequest request, Model model ) {
+			System.out.println(" sglist_search컨트롤러");	
+			model.addAttribute("request", request);
+			command=new sglist_searchCommand();
+			command.execute(model);
+			
+			return "SGroup/sglist_search";
+		}
 
 		///////////////////////유저게시판////////////////////////////////////////////	
 		@RequestMapping("/list")//url매핑
@@ -600,7 +562,10 @@ public class GroupController {
 			return "redirect:list";//컨트롤에 되어있는 list로 맵핑된 곳으로 찾아가라 
 		}
 		@RequestMapping("/write_view")
-		public String write_view() {
+		public String write_view(HttpServletRequest request, Model model) {
+			model.addAttribute("request",request);		
+			command = new logincheck();
+			command.execute(model);
 			return "user_board/write_view";
 		}
 
@@ -922,7 +887,194 @@ public class GroupController {
 			command = new sg_active_saveCommand();
 			command.execute(model);
 			return "redirect:sg_active";
+		}
+		
+		//////////////////////////////////////////고객센터_자주하는 질문/////////////////////////////////////////	
+				
+		
+		@RequestMapping("/Repetition_QnA")
+		public String Repetition_QnA(HttpServletRequest request, Model model) {
+		System.out.println("Repetition_QnA 컨트롤러");
+		model.addAttribute("request",request);
+		command = new Repetition_QnACommand();
+		command.execute(model);
+		return "CS/Repetition_QnA";
 		}	
+		
+		@RequestMapping("/cs_write_view")
+		public String cs_write_view(HttpServletRequest request, Model model) {
+		
+		return "CS/write_view";
+		}
+		
+		@RequestMapping("/cs_write")
+		public String cs_write( HttpServletRequest request, Model model) {
+		System.out.println("cs_write()");	
+		model.addAttribute("request",request);		
+		command = new CSWriteCommand();
+		command.execute(model);
+		return "redirect:Repetition_QnA";
+		}
+		
+		@RequestMapping("/cs_content_view")
+		public String cs_content_view(HttpServletRequest request, Model model) {
+		System.out.println("cs_content_view 컨트롤러");
+		model.addAttribute("request",request);
+		command = new CS_ContentCommand();
+		command.execute(model);
+		return "CS/content_view";
+		}
+		@RequestMapping("/search_csboard")
+		public String serch_csboard(HttpServletRequest request, Model model) {
+		System.out.println("search_csboard");
+		model.addAttribute("request",request);
+		command = new search_csboard();
+		command.execute(model);
+		return "CS/search";
+		
+		}
+		
+		@RequestMapping("/cs_modify")
+		public String cs_bModify(HttpServletRequest request, Model model) {
+		System.out.println("cs_bmodify");
+		model.addAttribute("request",request);
+		command = new CSModifyViewCommand();
+		command.execute(model);
+		return "CS/modifyForm";
+		}
+		
+		@RequestMapping("/cs_modifyAction")
+		public String cs_bModifyAction(HttpServletRequest request, Model model) {
+		System.out.println("cs_modifyAction");
+		
+		model.addAttribute("request",request);
+		command = new CSModifyCommand();
+		command.execute(model);
+		return "redirect:Repetition_QnA";
+		
+		}
+		@RequestMapping("/cs_delete")
+		public String cs_delete() {
+		return "CS/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
+		}
+		
+		@RequestMapping("/cs_bDeleteAction")
+		public String cs_bDeleteAction(HttpServletRequest request, Model model) {
+		System.out.println("cs_bDelteAction");
+		
+		model.addAttribute("request",request);
+		command = new CSDeleteCommand();
+		command.execute(model);
+		
+		return "redirect:Repetition_QnA";
+		}
+		//////////////////////////////////////////고객센터_묻고 답하기/////////////////////////////////////////		
+		
+		@RequestMapping("/QnA_list")
+		public String QnA_list(HttpServletRequest request, Model model) {
+		System.out.println("QnA_list 컨트롤러");
+		model.addAttribute("request",request);
+		command = new QnA_listCommand();
+		command.execute(model);	
+		return "QnA/QnA_list";
+		}	
+		
+		@RequestMapping("/QnA_write_view")
+		public String QnA_write_view(HttpServletRequest request, Model model) {
+			model.addAttribute("request",request);		
+			command = new logincheck();
+			command.execute(model);
+		return "QnA/write_view";
+		}
+		
+		@RequestMapping("/QnA_write")
+		public String QnA_write( HttpServletRequest request, Model model) {
+		System.out.println("QnA_write()");	
+		model.addAttribute("request",request);		
+		command = new QnAWriteCommand();
+		command.execute(model);
+		return "redirect:QnA_list";
+		}
+		
+		@RequestMapping("/QnA_content_view")
+		public String QnA_content_view(HttpServletRequest request, Model model) {
+		System.out.println("QnA_content_view 컨트롤러");
+		model.addAttribute("request",request);
+		command = new QnA_ContentCommand();
+		command.execute(model);
+		return "QnA/content_view";
+		}
+		@RequestMapping("/search_QnAboard")
+		public String serch_QnAboard(HttpServletRequest request, Model model) {
+		System.out.println("search_QnAboard");
+		model.addAttribute("request",request);
+		command = new search_QnAboard();
+		command.execute(model);
+		return "QnA/search";
+		
+		}
+		
+		
+		@RequestMapping("/QnA_modify")
+		public String QnA_modify(HttpServletRequest request, Model model) {
+		System.out.println("QnA_modify");
+		model.addAttribute("request",request);
+		command = new QnA_modifyViewCommand();
+		command.execute(model);
+		return "QnA/modifyForm";
+		}
+		
+		@RequestMapping("/QnA_modifyAction")
+		public String QnA_bModifyAction(HttpServletRequest request, Model model) {
+		System.out.println("QnA_modifyAction");
+		
+		model.addAttribute("request",request);
+		command = new QnAModifyCommand();
+		command.execute(model);
+		return "redirect:QnA_list";
+		
+		}
+		
+		
+		@RequestMapping("/QnA_delete")
+		public String QnA_delete() {
+		return "QnA/content_delete";//현재 이 url을 유지하면서 뷰페이지만 보여줘라
+		}
+		
+		@RequestMapping("/QnA_bDeleteAction")
+		public String QnA_bDeleteAction(HttpServletRequest request, Model model) {
+		System.out.println("QnA_bDelteAction");
+		
+		model.addAttribute("request",request);
+		command = new QnADeleteCommand();
+		command.execute(model);
+		
+		return "redirect:QnA_list";
+		}
+		
+		
+		@RequestMapping("/QnA_reply_view")
+		public String QnA_reply_view(HttpServletRequest request, Model model) {
+		System.out.println("QnA_reply_view컨트롤러");
+		model.addAttribute("request",request);
+		command = new QnAReplyWriteCommand();
+		command.execute(model);
+		return "QnA/reply_view";
+		}
+		
+		@RequestMapping("/QnA_ReplyAction")
+		public String QnA_ReplyAction(HttpServletRequest request, Model model) {
+		System.out.println("QnA_ReplyAction 컨트롤러");
+		model.addAttribute("request",request);
+		command = new QnA_ReplyCommand();
+		command.execute(model);
+		return "redirect:QnA_list";
+		
+		}
+		
+		
+		
+		}
 
 
-}
+		

@@ -4,6 +4,7 @@ package com.slacademy.last_project.Gcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -27,7 +28,10 @@ public class bg_Schedule_saveCommand implements MCommand {
 		int c_id = Integer.parseInt(request.getParameter("course"));
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
-		String u_id=request.getParameter("u_id");
+		//String u_id=request.getParameter("u_id");
+		
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
 		
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");

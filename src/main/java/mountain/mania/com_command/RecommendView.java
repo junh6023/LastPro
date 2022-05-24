@@ -3,6 +3,7 @@ package mountain.mania.com_command;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -14,12 +15,25 @@ public class RecommendView implements MCommand{
 	public void execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		String u_id = request.getParameter("u_id");
-		MDao mdao=new MDao();
+		HttpSession session = request.getSession();
 		
-		int result = mdao.getRecommend(u_id);
+		if(session.getAttribute("u_id") != null) {			
+			String u_id= (String) session.getAttribute("u_id");
+			MDao mdao=new MDao();
+			int result = mdao.getRecommend(u_id);
+			
+			model.addAttribute("levelresult",result);
+		} else {			
+			model.addAttribute("idnull","idnull");
+		}
 		
-		request.setAttribute("levelresult",result);
+//		if(u_id==null) {
+//		}else {
+//			
+//		}
+	   
+	    
+		
 	}
 
 }

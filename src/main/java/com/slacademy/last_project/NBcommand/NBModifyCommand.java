@@ -3,6 +3,7 @@ package com.slacademy.last_project.NBcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -18,7 +19,10 @@ public class NBModifyCommand implements MCommand {
 		Map<String, Object> map = model.asMap(); //Map
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String u_id = request.getParameter("u_id");
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
+		//String u_id = request.getParameter("u_id");
 		String b_title = request.getParameter("b_title");
 		String b_content = request.getParameter("b_content");
 		String b_id = request.getParameter("b_id");

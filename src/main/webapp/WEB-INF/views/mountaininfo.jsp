@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="mountain.mania.com_DTO.*"%>
-<% int levelresult=((Integer)request.getAttribute("levelresult")).intValue();%>
+
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -29,14 +29,22 @@
 <body>
 		<c:set var="test" value="${weather}" />
 		<c:set var="testSubString" value="${fn:substring(test,22,23)}" />
-
+	
+		<c:if test="${idnull eq 'idnull'}">
+			<script>
+				alert("로그인을 해주세요")
+				location.href="member/loginform.do";
+			</script>
+		</c:if>
+		
 	<jsp:include page="top.jsp" />
 	<div class="conteant">
 		<div class="mypage-nav">
 			<ul>
-				<li><a href="levelhigh?m_level=상">상 난이도</a></li>
-				<li><a href="levelhigh?m_level=중">중 난이도</a></li>
-				<li><a href="levelhigh?m_level=하">하 난이도</a></li>
+				<li><a href="levelhigh?m_level=상&actives=mountaininfo">상 난이도</a></li>
+				<li><a href="levelhigh?m_level=중&actives=mountaininfo">중 난이도</a></li>
+				<li><a href="levelhigh?m_level=하&actives=mountaininfo">하 난이도</a></li>
+				
 			</ul>
 		</div>
 		<div class="main-text">
@@ -76,7 +84,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=2">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=74 66">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -113,7 +121,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=3">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=89 90">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -148,7 +156,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=4">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=92 131">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -183,7 +191,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=7">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=58 74">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -205,23 +213,21 @@
 							<div class="tamp-title" > 용문산</div>
 							<div class="tamp-cont" >
 								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">123 </span>
+									<span class="txt1" >높이:</span><span class="txt2">1157M </span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >난이도:</span><span class="txt2">1232 </span>
+									<span class="txt1" >난이도:</span><span class="txt2">중</span>
 								</div>
 								<div class="tamp-txt" >
-									<span class="txt1" >지역:</span><span class="txt2">1233 </span>
+									<span class="txt1" >지역:</span><span class="txt2">경기도 </span>
 								</div>
-								<div class="tamp-txt" >
-									<span class="txt1" >높이:</span><span class="txt2">1233 </span>
-								</div>
+								
 							</div>
 						</div>
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=9">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=60 127">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -256,7 +262,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=5">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=58 74">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -290,7 +296,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id='2'">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=74 66">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>
@@ -325,7 +331,7 @@
 						<div class="tamp-scont" >※이용자 분들의 레벨 그리고 현재 날씨에 따라 추천된 오늘의 추천산입니다.</div>
 						<div class="tamp-btn" >
 							<a href="courseview?m_id=2">코스보기</a>
-							<a href="#">지금날씨보기</a>
+							<a href="search_weather?area=74 66">지금날씨보기</a>
 						</div>
 					</li>
 					</c:if>				

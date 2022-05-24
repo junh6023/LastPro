@@ -48,9 +48,10 @@ public class GDao {
 
 
 	//동호회 리스트 조회
-	public ArrayList<GDto> list() {
-		System.out.println("list다오 들어옴");
-		// TODO Auto-generated method stub
+	public ArrayList<GDto> list(int page, int limit) {
+		final int startrow=(page-1)*10; //읽기 시작할 row 번호.
+	    final int endrow=startrow+limit; //읽을 마지막 row 번호.
+		
 		String sql="select bg_id, bg_name, u_id,bg_experience, "
 				+ " case "
 				+ " when bg_experience > 5"
@@ -64,27 +65,37 @@ public class GDao {
 				+ " when bg_experience > 1"
 				+ " then '2'"
 				+ " else '1'"
-				+ " end as bg_level, bg_intro, bg_date from big_group_list order by bg_id";
-		//String sql="select * from big_group_list order by bg_id";
-		return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
+				+ " end as bg_level, bg_intro, bg_date from big_group_list order by bg_id LIMIT ?,? ";
+		
+//		String sql="select * from big_group_list order by bg_id";
+		return (ArrayList<GDto>) template.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, startrow);
+				ps.setInt(2, endrow);
+				
+			}
+			
+		},new BeanPropertyRowMapper<GDto>(GDto.class));
 	}
 
 	//동호회 생성
 	public void Group_add(final String u_id, final String bg_name, final String bg_intro) {
 		// TODO Auto-generated method stub
-		System.out.println("Group_add다오 들어옴");
+		
 
 		int num;
 		String sql0="select max(bg_id)as bg_id from big_group_list";//동호회리스트의 max값을 찾는 sql을 쓰고
 		if(template.queryForObject(sql0,Integer.class) != null) {//그 값이 null이 아니라면 찾은 값에 +1을 해주고
-			System.out.println("test1");
+			
 			num=template.queryForObject(sql0,Integer.class)+1;
-			System.out.println("test2");
+			
 		}else {//null이라면 그 값을 1로 바꿔줘라
 			num = 1;
 		}
 
-		System.out.println(num);
+		
 
 
 		//String sql="insert into big_group_list (bg_id, u_id,bg_name,bg_experience,bg_level,bg_intro) values ((select a.bg_id from (select max(bg_id)+1 as bg_id  from big_group_list)a),?,?,0,0,?) ";
@@ -111,7 +122,7 @@ public class GDao {
 			num1 = 1;
 		}
 
-		System.out.println(num1);
+	
 		String sql2="insert into big_group_member (bgm_id, bg_id, bg_name, u_id, u_experience,u_level) values ("+num1+",(select bg_id from big_group_list where u_id=?),(select bg_name from big_group_list where u_id=?),?,(select u_experience from users where u_id=?),(select u_level from users where u_id=?))";
 
 		this.template.update(sql2, new PreparedStatementSetter() {
@@ -146,7 +157,7 @@ public class GDao {
 			num = 1;
 		}
 
-		System.out.println(num);
+		
 		String sql="insert into bg_join(bgj_id, bg_id, bg_name, u_id, u_experience, u_level) values("+num+",?,?,?,(select u_experience from users where u_id=?),(select u_level from users where u_id=?))";
 		this.template.update(sql, new PreparedStatementSetter() {
 
@@ -164,7 +175,7 @@ public class GDao {
 
 	//내가 신청한 동호회 가입내역 
 	public ArrayList<GJoinDto> bg_joinlist(final String u_id) {
-		System.out.println("bg_joinlist 다오들어옴");
+		
 		String sql = "select * from bg_join where u_id=?";
 		return (ArrayList<GJoinDto>) template.query(sql, new PreparedStatementSetter() {
 
@@ -208,7 +219,7 @@ public class GDao {
 			num = 1;
 		}
 
-		System.out.println(num);
+
 
 		String sql="insert into big_group_member(bgm_id, bg_id, bg_name, u_id, u_experience, u_level) values("+num+",?,(select bg_name from big_group_list where bg_id=? ),?,(select u_experience from users where u_id=?),(select u_level from users where u_id=?))";
 		this.template.update(sql, new PreparedStatementSetter() {
@@ -291,8 +302,12 @@ public class GDao {
 	}
 
 	//bg_랭킹보기 눌렀을때
-	public ArrayList<GDto> bg_rank() {
+	public ArrayList<GDto> bg_rank(int page, int limit) {
 
+
+		final int startrow=(page-1)*30; //읽기 시작할 row 번호.
+	    final int endrow=startrow+limit; //읽을 마지막 row 번호.
+		
 		String sql="select bg_id, bg_name, u_id,bg_experience, "
 				+ " case "
 				+ " when bg_experience > 5"
@@ -306,8 +321,7 @@ public class GDao {
 				+ " when bg_experience > 1"
 				+ " then '2'"
 				+ " else '1'"
-				+ " end as bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list";
-
+				+ " end as bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list LIMIT "+startrow+","+endrow ;
 
 		return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
 	}
@@ -407,8 +421,8 @@ public class GDao {
 			         num = 1;
 			      }
 				
-				System.out.println(num);
-				String sql = "insert into bg_scheduler values("+num+",?,(select m_name from mountain where m_id=?),(select bg_name from big_group_list where u_id=?),(select course_name from course where c_id=?),?,?)";
+				
+				String sql = "insert into bg_scheduler values("+num+",?,(select m_name from mountain where m_id=?),(select bg_name from big_group_list where u_id=?),(select c_level from course where c_id=?),?,?)";
 				this.template.update(sql, new PreparedStatementSetter() {
 
 					@Override
@@ -506,7 +520,6 @@ public class GDao {
 					
 					rs.next();	
 					
-					System.out.println(rs.getString("u_id"));
 					
 					if(!(rs.getString("u_id").equals("0"))) {
 						return true;
@@ -527,7 +540,7 @@ public class GDao {
 				
 				try {
 					Connection connection = dataSource.getConnection();
-					System.out.println(connection);
+					
 					PreparedStatement preparedStatement = connection.prepareStatement(sql);
 					preparedStatement.setString(1,u_id);
 					ResultSet rs = preparedStatement.executeQuery();
@@ -571,8 +584,6 @@ public class GDao {
 
 			public boolean small_nav_check(String u_id) {
 				String sql = "select count(u_id) as u_id from small_group_list where u_id=?";
-
-				
 				try {
 					Connection connection = dataSource.getConnection();
 					PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -580,9 +591,6 @@ public class GDao {
 					ResultSet rs = preparedStatement.executeQuery();
 					
 					rs.next();	
-					
-					System.out.println(rs.getString("u_id"));
-					
 					if(!(rs.getString("u_id").equals("0"))) {
 						return true;
 					}
@@ -597,7 +605,20 @@ public class GDao {
 
 
 			public ArrayList search(final String search) {
-				String sql="select bg_id, bg_name, u_id,bg_experience, bg_level, bg_intro, bg_date, bg_rank from (select bg_id, bg_name, u_id,bg_experience, bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list)a where bg_name like ? ";
+				String sql="select bg_id, bg_name, u_id,bg_experience,"
+						+ " case "
+						+ " when bg_experience > 5"
+						+ " then '6'"
+						+ " when bg_experience > 4"
+						+ " then '5'"
+						+ " when bg_experience > 3"
+						+ " then '4'"
+						+ " when bg_experience > 2"
+						+ " then '3'"
+						+ " when bg_experience > 1"
+						+ " then '2'"
+						+ " else '1'"
+						+ " end as bg_level, bg_intro, bg_date, bg_rank from (select bg_id, bg_name, u_id,bg_experience, bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list)a where bg_name like ? ";
 
 				return (ArrayList<GDto>) template.query(sql,new PreparedStatementSetter() {
 
@@ -619,7 +640,7 @@ public class GDao {
 		
 		//활동내역 저장
 		public void bg_active_save(final int m_id, final int bg_id, final int c_id, final float bg_experience, final int climb) {
-			System.out.println("bg_active_save 다오 들어옴");
+			
 			
 			int num;
 			String sql0="select max(ba_id)as bgs_id from bg_active";//동호회리스트의 max값을 찾는 sql을 쓰고
@@ -712,9 +733,44 @@ public class GDao {
 		      }, new  SingleColumnRowMapper<Integer>(Integer.class)).get(0);
 		        
 		        
-		        System.out.println(climb);
+		   
 		        
 		        return climb;
+		}
+
+
+
+		public int count() {
+			int count=0;
+			String query = "select count(*) as count from big_group_list";//as count 컬럼 명 변경해줌
+			return template.queryForObject(query, Integer.class);//답변을 Integer로 바꿔서 리턴해줌 기본타입과 레퍼타입은 서로 자유롭게 섞어 쓸 수 있다/낮은 버전에서는 안됨
+		}
+
+
+		//이름 있는지 확인
+		public boolean bg_nameCheck(final String bg_name) {
+			String sql= "select bg_name from big_group_list where bg_name =?";
+			ArrayList<GDto> bg_nameCheck = (ArrayList<GDto>) template.query(sql,new PreparedStatementSetter() {
+
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setString(1, bg_name);
+					
+				}
+				
+			},new BeanPropertyRowMapper<GDto>(GDto.class));
+			
+		
+			for(int i=0;i<bg_nameCheck.size();i++) {
+				String name=bg_nameCheck.get(i).getBg_name();
+				
+				if(name.trim().contains(bg_name)) {
+					return false;
+				}
+		
+		}
+			return true;
+		}
 		}
 
 
@@ -762,7 +818,7 @@ public class GDao {
 
 
 
-}
+
 
 
 

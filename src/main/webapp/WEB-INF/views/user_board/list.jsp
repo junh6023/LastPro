@@ -27,9 +27,9 @@
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>게시판</h2></li>
-						<li><a href="list">자유게시판</a></li>
-						<li><a href="n_list?u_id=Admin">공지게시판</a></li>
-						<li><a href="e_list?u_id=Admin">이벤트게시판</a></li>
+						<li><a href="list" class="active">자유게시판</a></li>
+						<li><a href="n_list">공지게시판</a></li>
+						<li><a href="e_list">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -42,12 +42,12 @@
 </c:when>
 <c:when test="${result1 eq 'no'}">
 	<script>
-		alert("욕 ㄴㄴ");
+		alert("욕설은 등록할 수 없습니다.");
 	</script>
 </c:when>
 <c:otherwise> 
 	<script>
-		alert("자유게시판 입니다~!");
+		alert("자유게시판 입니다~! 회원간 욕설은 삼가주세요.");
 	</script>
 </c:otherwise>
 </c:choose>

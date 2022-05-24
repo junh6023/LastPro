@@ -3,6 +3,7 @@ package com.slacademy.last_project.Gcommand;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -18,9 +19,12 @@ public class BigGroup_joinCommand implements MCommand {
 		Map<String, Object> map = model.asMap(); //model객체를 asMap을 이용해 Map으로 변환
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		GDao gdao= new GDao();
-				
+		
+		HttpSession session = request.getSession();
+	    String u_id= (String) session.getAttribute("u_id");
+		
 		int bg_id=Integer.parseInt(request.getParameter("bg_id"));
-		String u_id=request.getParameter("u_id");
+		//String u_id=request.getParameter("u_id");
 		String bg_name=request.getParameter("bg_name");
 		
 		System.out.println(bg_id);

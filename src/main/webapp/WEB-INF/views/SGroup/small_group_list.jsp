@@ -27,16 +27,25 @@
 					<ul>
 						<li><h2>동호회</h2></li>
 						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
-						<li><a href="bg_rank30">상위 10랭킹 </a></li>
+						<li><a href="bg_rank30">상위 30랭킹 </a></li>
 						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
-						<li><a href="bg_Schedule?u_id=test3">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
-						<li><a href="bg_rank">동호회 랭킹보기</a></li>
+						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list?">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule?u_id=test15">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 				</div>
 				<div class="main-text" >
+				<c:set var="sg_nameCheck" value="${sg_nameCheck}" />
+				<c:if test="${sg_nameCheck eq false}">
+					<script>
+						alert("이미 존재하는 모임명 입니다.");
+						history.back;
+					</script>
+				</c:if>
+				<form action="sglist_search" method="post">
+				모임 명 : <input type="text" name="search"><input type="submit" value="검색">
+				</form>
 			<table  border="1" align="center">
 				<tr>
 					<td>번호</td>
@@ -54,22 +63,44 @@
 					<td>${list.sg_date}</td>
 				</tr>
 				</c:forEach>
-			</table>
-			<br>
-			<a href="small_group_list?">모임 리스트 보기</a>	
-			<br>
-			<a href="small_group_joinlist?u_id=test11">모임 가입신청한 내역 보기</a>	<!-- 로그인된 유저아이디 ${u_id}해야됨  -->
-			<br>
-			<!-- 여기는 조건문 걸어야됨 -->	
-			<!-- if u_id==모임장들 아이디 모아놓은 리스트...? 생각을 좀 해보자-->
-			<a href="sg_joinlist_gi?u_id=test2">모임 가입신청온 내역보기</a><!-- 로그인된 모임장아이디 ${u_id}해야됨  -->
-			<br>
+				
+					<tr align=center height=20>
+			<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
 			
-			<a href="join_sgroup_list?u_id=test11">가입한 모임 보기</a><!-- 로그인된 유저아이디 ${u_id}해야됨  -->
-			<br>
-			<a href="sg_member_list?u_id=test2">내 모임 멤버리스트</a><!-- 로그인된 모임장아이디 ${u_id}해야됨  -->
-			<br>
-			<a href="sg_Schedule?u_id=test15">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
+				<c:choose>
+					<c:when test = "${page<=1}" >
+						[이전]&nbsp;
+					</c:when>
+					<c:otherwise>
+						<a href="small_group_list?page=${page-1}">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				
+	
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:choose>
+						<c:when test = "${a==page}">
+							[${a}]
+						</c:when>
+						<c:otherwise>
+							<a href="small_group_list?page=${a}">[${a}]</a>&nbsp;
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					
+				<c:choose>
+					<c:when test ="${page>=maxpage}">
+						[다음]
+					</c:when>
+					
+					<c:otherwise>
+						<a href="small_group_list?page=${page+1}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
+	</tr>
+			</table>
+		
 				</div>
 			</div>
 
