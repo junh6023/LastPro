@@ -101,17 +101,7 @@ public class MDao {
 	public ArrayList<MDto> getMHighList(int page, int limit,  final String m_level) {
 		final int startrow=(page-1)*8; //읽기 시작할 row 번호.
 		final int endrow=startrow+limit; //읽을 마지막 row 번호.
-		//			String query = "select * from (select rownum rnum,m_id,m_name,m_level,"+
-		//				"m_img,area,parking,m_address,items_name,items_img from "+
-		//				"mountain)where rnum>=? and rnum<=? and m_level =?" ;
-		//			
-		//			String query = "select * from "+
-		//					"(select rownum rnum,m_id,m_name,m_level,"+
-		//					"m_img,area,parking,m_address,"+
-		//					"items_name,items_img from "+
-		//					"(select * from mountain order by m_id asc)) "+
-		//					"where rnum>=? and rnum<=? and m_level=?" ;
-		//		String query = "select * from mountain where m_level=? ";
+		
 		String query = "select * from mountain where m_level=? limit ?,?";
 		return  (ArrayList<MDto>)template.query(query, new PreparedStatementSetter() { //업데이트에 사용
 
@@ -275,7 +265,7 @@ public class MDao {
 
 
 	//list페이지 -->페이징처리도 함께
-	public ArrayList<BDto> userborderlist(){
+	public ArrayList<BDto> userborderlist(int page, int limit){
 		System.out.println("여긴 다오");
 
 
@@ -576,6 +566,22 @@ public class MDao {
 
 
 			return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
+		}
+
+		public boolean adminlogin(String id, String pass) {
+			// TODO Auto-generated method stub
+			if(!id.equals("admin")) {
+				return false;
+			}
+			
+			String board_sql="select u_pw from users where u_id='admin'";
+			String a = template.queryForObject(board_sql,String.class); //셀렉 문 사용queryForObject = 싱글 반환
+			if(a.equals(pass)) {
+				return true;
+			}
+			
+			return false;
+			
 		}
 
 }

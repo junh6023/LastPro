@@ -48,10 +48,10 @@
 				</form>
 			<table  border="1" align="center">
 				<tr>
-					<td>번호</td>
-					<td>모임 명</td>
-					<td>모임 장</td>
-					<td>개설 날짜</td>
+					<th>번호</th>
+					<th>모임 명</th>
+					<th>모임 장</th>
+					<th>개설 날짜</th>
 			
 				</tr>
 			

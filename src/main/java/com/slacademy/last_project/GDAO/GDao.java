@@ -51,7 +51,7 @@ public class GDao {
 	public ArrayList<GDto> list(int page, int limit) {
 		final int startrow=(page-1)*10; //읽기 시작할 row 번호.
 	    final int endrow=startrow+limit; //읽을 마지막 row 번호.
-		
+		System.out.println("startrow: "+ startrow + "endrow: " +endrow);
 		String sql="select bg_id, bg_name, u_id,bg_experience, "
 				+ " case "
 				+ " when bg_experience > 5"
@@ -770,6 +770,30 @@ public class GDao {
 		
 		}
 			return true;
+		}
+
+
+
+		public ArrayList<GDto> bg_rank2(int page, int limit) {
+			final int startrow=(page-1)*10; //읽기 시작할 row 번호.
+		    final int endrow=startrow+limit; //읽을 마지막 row 번호.
+			
+			String sql="select bg_id, bg_name, u_id,bg_experience, "
+					+ " case "
+					+ " when bg_experience > 5"
+					+ " then '6'"
+					+ " when bg_experience > 4"
+					+ " then '5'"
+					+ " when bg_experience > 3"
+					+ " then '4'"
+					+ " when bg_experience > 2"
+					+ " then '3'"
+					+ " when bg_experience > 1"
+					+ " then '2'"
+					+ " else '1'"
+					+ " end as bg_level, bg_intro, bg_date, row_number() over (order by bg_experience desc) as bg_rank from big_group_list LIMIT "+startrow+","+endrow ;
+
+			return (ArrayList<GDto>) template.query(sql, new BeanPropertyRowMapper<GDto>(GDto.class));
 		}
 		}
 

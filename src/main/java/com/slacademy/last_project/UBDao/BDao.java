@@ -36,13 +36,16 @@ public class BDao {
 	
 	
 	//list페이지 -->페이징처리도 함께
-	public ArrayList<BDto> list(){
-		System.out.println("여긴 다오");
+	public ArrayList<BDto> userlist(int page, int limit){
+		
 	
 		
-		String query =" select b_id ,u_id ,b_title ,b_content ,b_date ,b_hit ,b_group,b_step ,b_indent ,b_pw ,b_lev,b_img  from userboard  order by b_group desc, b_id";
-		//rnum 내장함수
-		System.out.println("test3");
+		final int startrow=(page-1)*10; //읽기 시작할 row 번호.
+	    final int endrow=startrow+limit; //읽을 마지막 row 번호.
+		
+		String query =" select * from (select b_id ,u_id ,b_title ,b_content ,b_date ,b_hit ,b_group ,b_pw ,b_img  from userboard  order by b_group desc) ORDERS LIMIT "+startrow+","+endrow;
+		
+		System.out.println(query);
 		return (ArrayList<BDto>) template.query(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 		//new BeanPropertyRowMapper<BDto>(BDto.class) -> 빈즈에 담아주겠다 그럼 쿼리랑 같이 실행해서 ArrayList로 리턴해주겠다
 	}

@@ -10,7 +10,7 @@ public class GDto {
 	private float bg_experience;
 	private int bg_level;
 	private String bg_intro;
-	private Timestamp bg_date;
+	private String bg_date;
 	private int bg_rank;
 	
 
@@ -57,12 +57,13 @@ public class GDto {
 	public void setBg_intro(String bg_intro) {
 		this.bg_intro = bg_intro;
 	}
-	public Timestamp getBg_date() {
+	public String getBg_date() {
 		return bg_date;
 	}
-	public void setBg_date(Timestamp bg_date) {
+	public void setBg_date(String bg_date) {
 		this.bg_date = bg_date;
 	}
+	
 	
 
 	

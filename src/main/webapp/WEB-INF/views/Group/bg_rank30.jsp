@@ -26,24 +26,24 @@
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>동호회</h2></li>
-						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
-						<li><a href="bg_rank30">상위 30랭킹 </a></li>
-						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
+						<li><a href="big_group_list?actives=group">동호회 리스트 보기 </a></li>
+						<li><a href="bg_rank30?actives=group" class="active">상위 30랭킹 </a></li>
+						<li><a href="group_recruit?actives=group">동호회 및 모임 모집글 </a></li>
 						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list?actives=group">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule?actives=group">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 				</div>
 				<div class="main-text" >
 					 <table  border="1" align="center">
 						<tr>
-							<td>동호회 랭킹</td>
-							<td>동호회 명</td>
-							<td>동호회 경험치</td>
-							<td>동호회 레벨</td>
-							<td>동회회 장</td>
-							<td>개설 날짜</td>
+							<th>동호회 랭킹</th>
+							<th>동호회 명</th>
+							<th>동호회 경험치</th>
+							<th>동호회 레벨</th>
+							<th>동회회 장</th>
+							<th>개설 날짜</th>
 						</tr>
 					
 						<c:forEach items="${bg_rank}" var="rank"  begin="0" end="30">

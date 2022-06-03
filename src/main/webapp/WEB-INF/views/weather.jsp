@@ -102,7 +102,7 @@
 			
 			<div class="areaselect">
 				<h3 >조회할 지역을 선택해주세요.</h3>
-					<form action="search_weather">
+					<form action="search_weather?actives=weather">
 						날씨 조회할 지역검색 : <select name="area">
 						<option value="60 127">지역선택</option>
 						<option value="60 127">서울/경기</option>
@@ -124,40 +124,7 @@
 					<input type="submit" value="검색">
 					</form>
 			</div>
-			<!-- <div class="map" >
-				<div class="map-bg" >
-					<a href="">
-						<div class="${icon}" ></div>
-						<p class="txt" >
-							<span>${a1}</span>
-							<span>${b1}º</span>
-						</p>
-					</a>
-					<a href="">
-						<div class="${icon}" ></div>
-						<p class="txt" >
-							<span>test</span>
-							<span>testº</span>
-						</p>
-					</a>
-					<a href="">
-						<div class="${icon}" ></div>
-						<p class="txt" >
-							<span>test2</span>
-							<span>test2º</span>
-						</p>
-					</a>
-					<a href="">
-						<div class="${icon}" ></div>
-						<p class="txt" >
-							<span>test3</span>
-							<span>test3º</span>
-						</p>
-					</a>
-					
-				</div>
-			</div>
-			 -->
+			
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />

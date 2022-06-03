@@ -9,7 +9,7 @@ public class SGDto {
 	private String u_id;
 	private String sg_name;
 	private String sg_intro;
-	private Timestamp sg_date;
+	private String sg_date;
 	public int getSg_id() {
 		return sg_id;
 	}
@@ -34,12 +34,12 @@ public class SGDto {
 	public void setSg_intro(String sg_intro) {
 		this.sg_intro = sg_intro;
 	}
-	public Timestamp getSg_date() {
+	public String getSg_date() {
 		return sg_date;
 	}
-	public void setSg_date(Timestamp sg_date) {
+	public void setSg_date(String sg_date) {
 		this.sg_date = sg_date;
 	}
-	
+
 	
 }

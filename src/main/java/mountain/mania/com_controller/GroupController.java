@@ -155,7 +155,7 @@ public class GroupController {
 		public String bg_rank(HttpServletRequest request, Model model ) {
 			System.out.println("동호회랭크보기 컨트롤러");	
 			model.addAttribute("request", request);
-			command=new bg_rank();
+			command=new bg_rank2();
 			command.execute(model);
 
 			return "Group/bg_rank";

@@ -43,10 +43,10 @@ public class bg_rank implements MCommand {
 
 				if (endpage>startpage+10-1) endpage=startpage+10-1;
 
-				request.setAttribute("page", page);		  
-				request.setAttribute("maxpage", maxpage); 
-				request.setAttribute("startpage", startpage);
-				request.setAttribute("endpage", endpage);    
+//				request.setAttribute("page", page);		  
+//				request.setAttribute("maxpage", maxpage); 
+//				request.setAttribute("startpage", startpage);
+//				request.setAttribute("endpage", endpage);    
 				 
 				model.addAttribute("page", page);
 				model.addAttribute("maxpage", maxpage); 
@@ -55,7 +55,7 @@ public class bg_rank implements MCommand {
 				
 				model.addAttribute("count", count);
 			
-			 model.addAttribute("bg_rank", gdto);
+				model.addAttribute("bg_rank", gdto);
 
 	}
 

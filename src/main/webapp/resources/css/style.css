@@ -149,14 +149,14 @@ h1{
     margin:auto;
 
 }
-.icons  li{
+.icons>li{
     flex:1;
     background: white;
     height: 302px;
     margin-top:49px;
     text-align:center;
 }
-.icons  li  .icon_img{
+.icons li  .icon_img{
     margin-top: 36px;
 }
 .icons  li:not(:last-child){

@@ -25,15 +25,15 @@
 			<div class="conteant" >
 				<div class="mypage-nav" >
 					<ul>
-						<li><a href="group_recruit"><h2>동호회 만들기</h2> </a></li>
+						<li><a href="group_recruit" class="active"><h2>동호회 만들기</h2> </a></li>
 						<li><h2>동호회</h2></li>
-						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
-						<li><a href="bg_rank30">상위 30랭킹 </a></li>
-						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
-						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
+						<li><a href="big_group_list?actives=group" >동호회 리스트 보기 </a></li>
+						<li><a href="bg_rank30?actives=group">상위 30랭킹 </a></li>
+						<li><a href="group_recruit?actives=group">동호회 및 모임 모집글 </a></li>
+						<li><a href="bg_Schedule?actives=group">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
 						<li><h2>모임</h2></li>
-						<li><a href="small_group_list">모임 리스트 보기</a>	</li>
-						<li><a href="sg_Schedule">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
+						<li><a href="small_group_list?actives=group">모임 리스트 보기</a>	</li>
+						<li><a href="sg_Schedule?actives=group">일정</a><!-- 로그인된 동호회장아이디 ${u_id}해야됨  --></li>
 					</ul>
 				</div>
 				<div class="main-text" >

@@ -24,7 +24,7 @@
 				<div class="mypage-nav" >
 					<ul>
 						<li><a href="Repetition_QnA">자주 묻는 질문</a></li>
-						<li><a href="QnA_list">문의하기</a></li>
+						<li><a href="QnA_list" class="active">문의하기</a></li>
 						
 					</ul>
 				</div>
@@ -43,20 +43,17 @@
 	<table width="500" cellpadding ="0" cellspacing="0" border="1" align="center"
 	>
 		<tr>
-			<td>번호</td>
-			<td>이름</td>
-			<td>제목</td>
-			<td>날짜</td>
-			<td>히트</td>
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>날짜</th>
+			<th>히트</th>
 			
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
 			<td>${dto.b_id}</td>
-			<td>${dto.u_id}</td>
-		
-			
-				<td style="font-family:Tahoma;font-size:10pt;" align="left">
+			<td style="font-family:Tahoma;font-size:10pt;" align="left">
 
 				
 			
@@ -73,9 +70,9 @@
 				</c:choose>
 			<a href="QnA_content_view?b_id=${dto.b_id} " >${dto.b_title}</a>
 			</td>
-
-				<td>${dto.b_date}</td>
-				<td>${dto.b_hit}</td>
+			<td>${dto.u_id}</td>
+			<td>${dto.b_date}</td>
+			<td>${dto.b_hit}</td>
 		</tr>
 		</c:forEach>
 		

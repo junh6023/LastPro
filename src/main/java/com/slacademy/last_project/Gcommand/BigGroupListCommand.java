@@ -18,7 +18,7 @@ public class BigGroupListCommand implements MCommand {
 	public void execute(Model model) {
 		GDao gdao = new GDao();
 
-		System.out.println("GroupListCommand 들어왔다");
+	
 		Map<String, Object> map = model.asMap(); //model객체를 asMap을 이용해 Map으로 변환
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
@@ -31,7 +31,7 @@ public class BigGroupListCommand implements MCommand {
 		}
 		
 		String u_id=request.getParameter("u_id");
-		System.out.println(u_id);
+		
 		
 		//boolean check=gdao.nav_check(u_id);//동호회 장일 경우에만 보이는 메뉴 리스트 페이지에서 뽑아내려고, 준형오빠한테 붙이면 달라져야함
 		//System.out.println(check);
@@ -39,7 +39,7 @@ public class BigGroupListCommand implements MCommand {
 		
 	
 		int count = gdao.count();
-		System.out.println(count);
+		
 	
 		int maxpage=(int)((double)count/limit+0.95); 		
 		int startpage = (((int) ((double)page / 10 + 0.9)) - 1) * 10 + 1;
@@ -47,10 +47,10 @@ public class BigGroupListCommand implements MCommand {
 
 		if (endpage>startpage+10-1) endpage=startpage+10-1;
 
-		request.setAttribute("page", page);		  
-		request.setAttribute("maxpage", maxpage); 
-		request.setAttribute("startpage", startpage);
-		request.setAttribute("endpage", endpage);    
+//		request.setAttribute("page", page);		  
+//		request.setAttribute("maxpage", maxpage); 
+//		request.setAttribute("startpage", startpage);
+//		request.setAttribute("endpage", endpage);    
 		 
 
 		if(request.getParameter("bg_nameCheck")!=null) {

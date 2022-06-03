@@ -324,7 +324,7 @@ public class MemberController {
 
 		System.out.println(vo.getU_id());
 		System.out.println(vo.getU_pw());
-		System.out.println("체우진 야발탱;");
+	
 
 		// 세션 생성 하기
 		HttpSession session = request.getSession();

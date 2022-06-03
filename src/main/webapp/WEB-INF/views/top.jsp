@@ -66,7 +66,7 @@
 		<li>
 			<div>
 				<div class="contents1">
-					<a href="group_recruit?actives=group" " class="test1" id="test3">모임</a>
+					<a href="group_recruit?actives=group"  class="test1" id="test3">모임</a>
 				</div>
 
 			</div>

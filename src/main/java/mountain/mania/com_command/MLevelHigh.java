@@ -26,14 +26,13 @@ public class MLevelHigh implements MCommand{
       if(request.getParameter("page")!=null){
          page=Integer.parseInt(request.getParameter("page"));
       }
-      System.out.println("m_level: "+m_level);
-      System.out.println("페이지: "+page);
+    
       
       int listcount=mdao.gethighcount(m_level); //총 리스트 수를 받아옴.
       boardlist = mdao.getMHighList(page,limit,m_level); //리스트를 받아옴.
       model.addAttribute("list", boardlist);
       
-      System.out.println("리스트카운트: " + listcount);
+      
       //총 페이지 수.
          int maxpage=(int)((double)listcount/limit+0.95); //0.95를 더해서 올림 처리.
          //현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)

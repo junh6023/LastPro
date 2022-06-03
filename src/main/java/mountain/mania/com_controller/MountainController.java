@@ -110,6 +110,13 @@ public class MountainController {
 	@RequestMapping("/admin")
 	public String Admin() {
 		System.out.println("admin");
+		return "adminlogin";
+	}
+	@RequestMapping("/adminlogin")
+	public String AdminLogin(HttpServletRequest request,Model model) {
+		model.addAttribute("request", request);
+		command = new AdminLogin();
+		command.execute(model);
 		return "adminform";
 	}
 	@RequestMapping("/weather")

@@ -93,7 +93,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 	<div class="main_text0" id="link_main_text0">
-						<button id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=caf99741ffa626e59841122a4ac6c909&redirect_uri=http://localhost:8080/com/member/kakao&response_type=code'"> 카카오로 로그인하기 </button>
+						
 	<form action="loginpro" method="post">
 	
 		<fieldset class="lo">

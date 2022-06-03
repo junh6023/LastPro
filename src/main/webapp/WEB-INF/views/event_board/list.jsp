@@ -28,9 +28,9 @@
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>게시판</h2></li>
-						<li><a href="list">자유게시판</a></li>
 						<li><a href="n_list">공지게시판</a></li>
-						<li><a href="e_list">이벤트게시판</a></li>
+						<li><a href="list">자유게시판</a></li>
+						<li><a href="e_list" class="active">이벤트게시판</a></li>
 					</ul>
 				</div>
 				<div class="main-text" >
@@ -39,29 +39,24 @@
 <br><br>
 	<span>
 	 &nbsp;&nbsp;&nbsp;총 게시글 수 : ${count}
-	</span><br><br><br>
-
-		<c:if test="${u_id eq 'Admin'}">
-		<tr>
-			<td colspan="5" > <a href="e_write_view">글작성</a> </td>
-		</tr>
-	</c:if>
+	</span><br>
+	<span id="usearch">
+	<form action="search_eboard" method="post" align="center">
+		<td colspan="5"><input type="text" name="searchs">&nbsp;<input type="submit" value="검색"></td>
+	</form>
+	</span>
 	<table width="500" cellpadding ="0" cellspacing="0" border="1" align="center">
-		<tr>
-			<td>번호</td>
-			<td>이름</td>
-			<td>제목</td>
-			<td>날짜</td>
-			<td>히트</td>
-			
+		<tr>			
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>날짜</th>
+			<th>히트</th>
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
 			<td>${dto.b_id}</td>
-			<td>${dto.u_id}</td>
-		
-			
-				<td style="font-family:Tahoma;
+			<td style="font-family:Tahoma;
 				font-size:10pt;" align="left">
 				
 				<c:forEach var="i" begin="0" end="${dto.b_lev*2}"></c:forEach>
@@ -70,9 +65,9 @@
 				★
 			<a href="e_content_view?b_id=${dto.b_id}" >${dto.b_title}</a>
 			</td>
-
-				<td>${dto.b_date}</td>
-				<td>${dto.b_hit}</td>
+			<td>${dto.u_id}</td>
+			<td>${dto.b_date}</td>
+			<td>${dto.b_hit}</td>
 		</tr>
 		</c:forEach>
 		
@@ -112,13 +107,16 @@
 				</c:choose>
 			</td>
 	</tr>
+	<c:if test="${u_id eq 'Admin'}">
+		<tr>
+			<td colspan="5" > <a href="e_write_view">글작성</a> </td>
+		</tr>
+	</c:if>
 
-	<tr>
 	
-		<form action="search_eboard" method="post" align="center">
-			<td colspan="5"><input type="text" name="searchs">&nbsp;<input type="submit" value="검색"></td>
-		</form>
-	</tr>
+	
+		
+	
 	</table>
 				</div>
 			</div>

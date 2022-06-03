@@ -49,41 +49,25 @@
 			<li>
 				<div class="contents1_bold">대모임</div>
 				<div class="icon_img">
-				 	<table  border="1" align="center">
-						<tr>
-							<th>번호</th>
-							<th>동호회 명</th>
-							<th>동호회 경험치</th>
-							<th>동호회 레벨</th>
-							<th>동호회 장</th>
-							<th>개설 날짜</th>
-					
-						</tr>
-					<%
-						for(int i=0;i<boardList.size();i++){
-							GDto bl=(GDto)boardList.get(i);
-					%>	
-						<tr>
-							<td><%=bl.getBg_id() %></td>
-							<td><%=bl.getBg_name() %></td>
-							<td><%=bl.getBg_experience() %></td>
-							<td><%=bl.getBg_level() %></td>
-							<td><%=bl.getU_id() %></td>
-							<td><%=bl.getBg_date() %></td>
-						</tr>
-					<!--  	<c:forEach items="${list6}" var="list6" >
-						<tr>
-							<td>${list6.bg_id}</td>
-							<td><a href="big_group_content?bg_id=${list6.bg_id}">${list6.bg_name}</a></td>
-							<td>${list6.bg_experience}</td>
-							<td>${list6.bg_level}</td>
-							<td>${list6.u_id}</td>
-							<td>${list6.bg_date}</td>
-						</tr>
-						</c:forEach>
-						-->
-						<%} %>
-						</table>
+					<div class="main-table" >
+						<div class="table-ul">
+							<%
+								for(int i=0;i<boardList.size();i++){
+									GDto bl=(GDto)boardList.get(i);
+							%>	
+							<%String str = bl.getBg_date(); %>
+							<div class="table-li">
+								<p class="name" ><%=bl.getBg_name() %></p>
+								<p class="level">lv.<%=bl.getBg_level() %></p>
+								<p class="u-id" ><%=bl.getU_id() %></p>
+								<p class="date" ><%=str.substring(0, 11) %></p>
+							</div>
+							<%} %>
+						</div>
+					</div>
+				 
+		
+						
 						
 				</div>
 				
@@ -92,28 +76,24 @@
 			<li>
 				<div class="contents1_bold">소모임</div>
 				<div class="icon_img">
-				<table  border="1" align="center">
-						<tr>
-							<th>번호</th>
-							<th>동호회 명</th>
-							<th>동호회 장</th>
-							<th>개설 날짜</th>
-					
-						</tr>
-					<%
-						for(int i=0;i<SgList.size();i++){
-							SGDto sbl=(SGDto)SgList.get(i);
-					%>	
-						<tr>
-							<td><%=sbl.getSg_id() %></td>
-							<td><%=sbl.getSg_name() %></td>
-							<td><%=sbl.getU_id() %></td>
-							<td><%=sbl.getSg_date() %></td>
-							
-						</tr>
-					
-						<%} %>
-						</table>
+				<div class="main-table" >
+						<div class="table-ul">
+							<%
+								for(int i=0;i<SgList.size();i++){
+									SGDto sbl=(SGDto)SgList.get(i);
+							%>	
+							<%String str = sbl.getSg_date(); %>
+							<div class="table-li">
+								<p class="name" ><%=sbl.getSg_name() %></p>
+								
+								<p class="u-id" ><%=sbl.getU_id() %></p>
+								<p class="date" ><%=str.substring(0, 11) %></p>
+							</div>
+							<%} %>
+						</div>
+					</div>
+			
+			
 						
 				</div>
 				
@@ -122,32 +102,25 @@
 			<li>
 				<div class="contents1_bold">실시간랭킹</div>
 				<div class="icon_img">
-				 	<table  border="1" align="center">
-						<tr>
-							<td>동호회 랭킹</td>
-							<td>동호회 명</td>
-							<td>동호회 경험치</td>
-							<td>동호회 레벨</td>
-							<td>동회회 장</td>
-							<td>개설 날짜</td>
-					
-						</tr>
-					<%
-						for(int i=0;i<rankList.size();i++){
-							GDto rank=(GDto)rankList.get(i);
-					%>	
-						<tr>
-							<td><%=rank.getBg_rank() %></td>
-							<td><%=rank.getBg_name() %></td>
-							<td><%=rank.getBg_experience() %></td>
-							<td><%=rank.getBg_level() %></td>
-							<td><%=rank.getU_id() %></td>
-							<td><%=rank.getBg_date() %></td>
-							
-						</tr>
-					
-						<%} %>
-						</table>
+				<div class="main-table" >
+						<div class="table-ul">
+								<%
+									for(int i=0;i<rankList.size();i++){
+										GDto rank=(GDto)rankList.get(i);
+								%>
+								<%String str = rank.getBg_date(); %>
+							<div class="table-li">
+								<p class="name" ><%=rank.getBg_name() %></p>
+								<p class="level"><%=rank.getBg_rank() %></p>
+								<p class="u-id" ><%=rank.getU_id() %></p>
+								<p class="date" ><%=str.substring(0, 11)%></p>
+								
+							</div>
+							<%} %>
+						</div>
+					</div>
+		
+				 	
 				</div>
 				
 				<div class="more"><a href="bg_rank30">MORE</a></div>

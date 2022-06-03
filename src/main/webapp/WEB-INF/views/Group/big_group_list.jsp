@@ -33,7 +33,7 @@
 				<div class="mypage-nav" >
 					<ul>
 						<li><h2>동호회</h2></li>
-						<li><a href="big_group_list">동호회 리스트 보기 </a></li>
+						<li><a href="big_group_list" class="active">동호회 리스트 보기 </a></li>
 						<li><a href="bg_rank30">상위 30랭킹 </a></li>
 						<li><a href="group_recruit">동호회 및 모임 모집글 </a></li>
 						<li><a href="bg_Schedule">일정</a></li><!-- 로그인된 동호회장아이디 ${u_id}해야됨  -->
