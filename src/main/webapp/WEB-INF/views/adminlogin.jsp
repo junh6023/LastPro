@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="adminlogin" method="post">
-<table align="center">
+<table align="left">
 <tr><td><h1>Admin 로그인 화면</h1></td></tr>
 <tr>
 <td>ID:<input type="text" name="id"></td>

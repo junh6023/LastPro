@@ -5,7 +5,7 @@
     <%@ page import="java.util.*"%>
     
     <%
-	List boardList=(List)request.getAttribute("boardlist");
+	List boardList=(List)request.getAttribute("clist");
     %>
 <!DOCTYPE html>
 <html>
@@ -17,11 +17,10 @@
 	
 	<%
 		for(int i=0;i<boardList.size();i++){
-			MDto bl=(MDto)boardList.get(i);
+			CDto bl=(CDto)boardList.get(i);
 	%>
-	산이름:<%=bl.getM_name()%>  <a href="mdelete?m_id=<%=bl.getM_id() %>">산 삭제하기</a> 
-	<a href="mcourse_list?m_id=<%=bl.getM_id()%>">코스보기</a><br>
-    <img src="./mimg/<%=bl.getM_img()%>" width="200px" height="200px;"> <br>
+	코스레벨:<%=bl.getC_level()%>  <a href="mcourse_delete?c_id=<%=bl.getC_id() %>">삭제하기</a><br>
+    <img src="./mimg/<%=bl.getImg()%>" width="200px" height="200px;"> <br>
 	
 	
 	<%} %>

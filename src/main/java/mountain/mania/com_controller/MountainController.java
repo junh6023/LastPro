@@ -65,6 +65,7 @@ public class MountainController {
         return "redirect:test";        
         
     }
+	
 	@RequestMapping("/mname_form")
 	public String mname_form() {
 		System.out.println("mname_form");
@@ -119,6 +120,22 @@ public class MountainController {
 		command.execute(model);
 		return "adminform";
 	}
+	@RequestMapping("/mcourse_delete")
+	public String Mcourse_delete(HttpServletRequest request,Model model) {
+		model.addAttribute("request", request);
+		command = new Mcourse_delete();
+		command.execute(model);
+		return "adminform";
+	}
+	@RequestMapping("/mcourse_list")
+	public String Mcourse_list(HttpServletRequest request,Model model) {
+		model.addAttribute("request", request);
+		command = new CList();
+		command.execute(model);
+		
+		return "courselist";
+	}
+	
 	@RequestMapping("/weather")
 	public String Weather(HttpServletRequest request,Model model) throws IOException {
 
@@ -206,6 +223,7 @@ public class MountainController {
 		return "mountain/mdelete_form";
 
 	}
+	
 	@RequestMapping("/idelete_form")
 	public String idelete_form(HttpServletRequest request,Model model) {
 		model.addAttribute("request", request);
@@ -247,7 +265,7 @@ public class MountainController {
 		model.addAttribute("request", request);
 		command = new MCourseAdd();
 		command.execute(model);
-		return "redirect:mcourse_form";
+		return "adminform";
 	}
 
 	@RequestMapping("/courseview")

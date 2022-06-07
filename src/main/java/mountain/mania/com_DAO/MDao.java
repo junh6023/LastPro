@@ -61,11 +61,11 @@ public class MDao {
 				pstmt.setString(1, mdto.getM_name());
 				pstmt.setString(2, mdto.getM_level());
 				pstmt.setString(3, mdto.getM_img());
-				pstmt.setString(4, mdto.getArea());
-				pstmt.setString(5, mdto.getParking());
+				pstmt.setString(4, "null");
+				pstmt.setString(5, "null");
 				pstmt.setString(6, mdto.getM_address());
-				pstmt.setString(7, mdto.getItems_name());
-				pstmt.setString(8, mdto.getItems_img());
+				pstmt.setString(7, "null");
+				pstmt.setString(8, "null");
 
 			}
 		});
@@ -584,7 +584,29 @@ public class MDao {
 			
 		}
 
-}
+		public ArrayList<CDto> getCList(String m_id) {
+		
+				// TODO Auto-generated method stub
+				String query="select * from course where m_id ="+m_id;
+				return (ArrayList<CDto>) template.query     // 셀렉문 사용 query = 리스트 반환
+						(query, new BeanPropertyRowMapper<CDto>(CDto.class));
+			}
+
+		public void CDelete(final int c_id) {
+			String board_delete_sql="delete from course where c_id=?";
+			this.template.update(board_delete_sql, new PreparedStatementSetter() { //업데이트문
+
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setInt(1, c_id);
+				}
+			});
+		}
+			
+		
+		
+		}
+
 
 
 

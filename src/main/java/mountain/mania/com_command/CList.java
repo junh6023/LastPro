@@ -9,26 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import mountain.mania.com_DAO.MDao;
-import mountain.mania.com_DTO.MDto;
 
-
-public class MList implements MCommand{
+public class CList implements MCommand{
 
 	@Override
 	public void execute(Model model) {
+		// TODO Auto-generated method stub
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		MDao mdao = new MDao();
 		List boardlist=new ArrayList(); //게시글을 읽어오기위해
-
-        boardlist = mdao.getMList(); //리스트를 받아옴.
+		String m_id=request.getParameter("m_id");
+        boardlist = mdao.getCList(m_id); //리스트를 받아옴.
         
-        request.setAttribute("boardlist", boardlist);
+        request.setAttribute("clist", boardlist);
       
 
-		
 	}
-		
-	
 
 }

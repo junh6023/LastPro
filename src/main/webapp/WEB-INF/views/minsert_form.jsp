@@ -30,16 +30,15 @@ request.setCharacterEncoding("UTF-8");
 				</select>
 		 <br> 
 		산 이미지: <input type="file" name="m_img" multiple> <br>
-		산 지역: <input type="text" name="m_area"> <br> 
-		산 주차장 사진: <input type="file" name="m_parking" multiple> <br> 
+		
+		
 		산 주소: 	
 		<select class="m_address" name="m_address">
 		<c:forEach var="m_address" items="${maddress}">
 		<option value="${m_address}">${m_address}</option> 
 		</c:forEach>
 		</select><br>
-		추천장비이름: <input type="text" name="items_name"> <br> 
-		추천장비이미지:<input type="file" name="items_img" multiple> <br> 
+		
 		<input type="submit"> <br>
 		
 	</form>

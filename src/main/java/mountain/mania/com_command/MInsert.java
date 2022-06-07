@@ -49,24 +49,21 @@ public class MInsert implements MCommand{
    			String file1 = (String)files.nextElement();
    			filename1 = multi.getFilesystemName("m_img");
    	      
-   			String file2 = (String)files.nextElement();
-   			filename2 = multi.getFilesystemName("m_parking");
-   			
-   			String file3 = (String)files.nextElement();
-   			filename3 = multi.getFilesystemName("items_img");
-   			
+//   			String file2 = (String)files.nextElement();
+//   			filename2 = multi.getFilesystemName("m_parking");
+//   			
+//   			String file3 = (String)files.nextElement();
+//   			filename3 = multi.getFilesystemName("items_img");
+//   			
    			mdto.setM_name(multi.getParameter("m_name"));
    			mdto.setM_level(multi.getParameter("m_level"));
    			mdto.setM_img(filename1);
-   			mdto.setArea(multi.getParameter("m_area"));
-   			mdto.setParking(filename2);
+   			//mdto.setArea(multi.getParameter("m_area"));
+   			//mdto.setParking(filename2);
    			mdto.setM_address(multi.getParameter("m_address"));
-   			mdto.setItems_name(multi.getParameter("items_name"));
-   			mdto.setItems_img(filename3);
-   			System.out.println(multi.getParameter("m_name"));
-   			System.out.println("1파일 : "+filename1);
-   			System.out.println("2파일 : "+filename2);
-   			System.out.println("3파일 : "+filename3);
+   			//mdto.setItems_name(multi.getParameter("items_name"));
+   			//mdto.setItems_img(filename3);
+   			
 	   		mdao.MountainInsert(mdto);
 	   		
 	   		
